@@ -1,0 +1,17 @@
+certifi==2024.2.2
+charset-normalizer==2.0.12
+coreapi==2.2.2
+coreschema==0.0.4
+Django==2.2.5
+django-filter==21.1
+djangorestframework==3.11.0
+idna==3.7
+itypes==1.2.0
+Jinja2==3.0.0
+MarkupSafe==2.0.1
+PyMySQL==1.0.2
+pytz==2024.1
+requests==2.27.1
+sqlparse==0.4.4
+uritemplate==4.1.1
+urllib3==1.26.18
