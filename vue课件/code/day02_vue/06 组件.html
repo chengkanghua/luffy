@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <h1>我是vue</h1>
+    <Vava></Vava>
+    <App/>
+
+<!--    用子-->
+<!--    <App></App>-->
+
+</div>
+
+
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    //全局组件(不需要挂载)
+    Vue.component('Vava',{
+        data(){
+            return {}  //必须写return
+        },
+
+        template: `
+            <div class="vava" >
+                <h2 style="color:green;">vava全局组件</h2>
+
+            </div>
+
+        `
+
+    })
+
+
+
+    // 局部组件
+    //声子
+    let App = {
+            data(){
+                return {
+                    app_msg:'我是app子组件',
+                }
+            },
+            template:
+            `
+                 <div class="app">
+                     <h1 style="color:Red;">{{app_msg}}</h1>
+
+                 </div>
+
+            `
+
+        };
+
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {}
+        },
+        // 挂载子组件  挂子
+        components:{
+            // App:App,
+            App,
+
+        }
+    })
+
+
+
+</script>
+</html>

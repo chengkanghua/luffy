@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>todolist</title>
+	<style type="text/css">
+		.list_con{
+			width:600px;
+			margin:50px auto 0;
+		}
+		.inputtxt{
+			width:550px;
+			height:30px;
+			border:1px solid #ccc;
+			padding:0px;
+			text-indent:10px;
+		}
+		.inputbtn{
+			width:40px;
+			height:32px;
+			padding:0px;
+			border:1px solid #ccc;
+		}
+		.list{
+			margin:0;
+			padding:0;
+			list-style:none;
+			margin-top:20px;
+		}
+		.list li{
+			height:40px;
+			line-height:40px;
+			border-bottom:1px solid #ccc;
+		}
+
+		.list li span{
+			float:left;
+		}
+
+		.list li a{
+			float:right;
+			text-decoration:none;
+			margin:0 10px;
+		}
+	</style>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+	<div id="todolist" class="list_con">
+		<h2>To do list</h2>
+		<input type="text" v-model="message" class="inputtxt">
+		<input type="button" @click="addItem" value="增加" class="inputbtn">
+		<ul id="list" class="list">
+			<li v-for="item,key in dolist">
+				<span>{{item + key}}</span>
+				<a @click="upItem(key)" class="up" > ↑ </a>
+				<a @click="downItem(key)" class="down"> ↓ </a>
+				<a @click="delItem(key)" class="del">删除</a>
+			</li>
+		</ul>
+	</div>
+	
+    <script>
+    // 计划列表代码
+    let vm = new Vue({
+        el:"#todolist",
+        data:{
+            message:"",
+            dolist:[
+                "学习html",
+                "学习css",
+                "学习javascript",
+            ]
+        },
+        methods:{
+            addItem(){
+                if(this.messsage==""){
+                    return false;
+                }
+
+                this.dolist.push(this.message);
+                this.message = ""
+            },
+            delItem(key){
+                this.dolist.splice(key, 1); //splice(从哪个位置开始,删除几个)
+            },
+            upItem(key){
+                if(key==0){
+                    return false;
+                }
+                // 向上移动
+                let result = this.dolist.splice(key,1); // 注意返回的是删除的数组  //删除的是当前位置的数组
+                this.dolist.splice(key-1,0,result[0]);  // key-1 前一个位置 追加刚刚删除的
+            },
+            downItem(key){
+                // 向下移动
+                let result = this.dolist.splice(key, 1);
+                console.log(result); 
+                this.dolist.splice(key+1,0,result[0]);
+            }
+        }
+    })
+    </script>
+</body>
+</html>

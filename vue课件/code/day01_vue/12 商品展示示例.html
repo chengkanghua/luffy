@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .c1{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(value,index) in goods" :class="{c1:value.price>60}">
+            <td>{{value.name}}</td>
+            <td>{{value.price}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+
+
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                goods:[
+                    {"name":"python入门","price":150},
+                    {"name":"python进阶","price":100},
+                    {"name":"python高级","price":75},
+                    {"name":"python研究","price":60},
+                    {"name":"python放弃","price":110},
+                ]
+            }
+        },
+        // 方法
+        methods:{
+
+        }
+
+    })
+
+
+</script>
+
+</html>

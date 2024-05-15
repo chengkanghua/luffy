@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <ul>
+        <li v-for="(value,index) in book_list" :key="index">{{value.title}}--{{index}}</li>
+<!--        <li v-for="(value,index) in book_list" :key="value.id">{{value.title}}&#45;&#45;{{index}}</li>-->
+    </ul>
+
+    <ul>
+        <li v-for="(value,index) in book">{{value}}--{{index}}</li>
+    </ul>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+
+    // let a = [11,22,33,44]
+    // for (let i in a){
+    //     创建标签，添加文本，将标签添加到ul标签中
+    // }
+
+
+
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                book_list:[
+                        {"id":1,"title":"图书名称1","price":200},
+                        {"id":2,"title":"图书名称2","price":200},
+                        {"id":3,"title":"图书名称3","price":200},
+                        {"id":4,"title":"图书名称4","price":200},
+                    ],
+                book: {
+                        // "attr属性名":"value属性值"
+                        "id":11,
+                        "title":"图书名称1",
+                        "price":200
+                    },
+            }
+        },
+        // 方法
+        methods:{
+
+        }
+
+    })
+
+
+</script>
+
+</html>

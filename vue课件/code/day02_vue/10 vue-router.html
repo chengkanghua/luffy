@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <App></App>
+</div>
+
+</body>
+
+<!-- <script src="../js/vue.js"></script> -->
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.3.1/vue.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue-router/2.0.0/vue-router.js"></script>
+
+<script>
+    // /home/ -- Home组件
+    // /course/ -- Course组件
+    Vue.use(VueRouter);
+
+    let Home = {
+        data(){
+            return {
+                msg:'这是home组件页面',
+            }
+        },
+        template:`
+            <div class="home">
+                <h1>{{msg}}</h1>
+            </div>
+        `
+    }
+
+    let Course = {
+        data(){
+            return {
+                msg:'这是course组件页面',
+            }
+        },
+        template:`
+            <div class="course">
+                <h1>{{msg}}</h1>
+            </div>
+        `
+    }
+
+    let router = new VueRouter({
+        routes:[
+            {path:'/home/',component:Home},
+            {path:'/course/',component:Course},
+
+        ]
+    })
+
+    //<router-view></router-view>组件出口
+    let App = {
+        data(){
+            return {}
+        },
+        template:
+        `
+            <div class="app">
+                <router-link to="/home/">首页</router-link>
+                <router-link to="/course/">课程页</router-link>
+<!--                <a href=""></a>-->
+
+                <router-view></router-view>
+            </div>
+        `
+    }
+
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {}
+        },
+        components:{
+            App,
+        },
+        router,
+
+    })
+
+</script>
+
+
+</html>

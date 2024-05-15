@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id="app">
+    <button @click="zouni">获取天气</button>
+    <span style="color:Red;font-size: 30px" v-text="msg"></span>
+</div>
+
+
+</body>
+<script src="../js/vue.js"></script>
+<script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'',
+            }
+        },
+        methods:{
+            zouni(){
+                // 通过一个变量保存this对象。
+                let ths = this;
+                axios.get('http://wthrcdn.etouch.cn/weather_mini?city=北京').then( (response) => {
+                    // console.log(response.data.data.ganmao);
+                    console.log(this);
+                    // ths.msg=response.data.data.ganmao
+                    this.msg=response.data.data.ganmao
+
+                })
+
+
+            }
+        }
+    })
+
+
+
+</script>
+</html>

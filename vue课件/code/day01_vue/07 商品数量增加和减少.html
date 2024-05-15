@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <button @click="num++">增加</button>
+    <input type="text" :value="num">
+    <button @click="jianfa">减少</button>
+
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                num:1,
+            }
+        },
+        // 方法
+        methods:{
+            jianfa(){
+                if (this.num > 0){
+                    this.num--;
+                }
+
+            }
+        }
+
+    })
+
+
+</script>
+
+</html>

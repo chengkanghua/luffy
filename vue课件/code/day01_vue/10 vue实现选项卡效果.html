@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #card{
+            width: 500px;
+            height: 350px;
+        }
+        .title{
+            height:50px;
+        }
+        .title span{
+            width: 100px;
+            height: 50px;
+            background-color:#ccc;
+            display: inline-block;
+            line-height: 50px; /* 设置行和当前元素的高度相等,就可以让文本内容上下居中 */
+            text-align:center;
+        }
+        .content .list{
+            width: 500px;
+            height: 300px;
+            background-color: yellow;
+            display: none;
+        }
+        .content .active{
+            display: block;
+        }
+
+        .title .current{
+            background-color: yellow;
+        }
+    </style>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    <div id="card">
+        <div class="title">
+            <span @click="num=0">徐乐</span>
+            <span @click="num=1">伟博</span>
+            <span @click="num=2">天然</span>
+
+        </div>
+        <div class="content">
+            <div class="list" :class="{active:num===0}">徐乐22</div>
+            <div class="list" :class="{active:num===1}">伟博31</div>
+            <div class="list" :class="{active:num===2}">天然18</div>
+        </div>
+    </div>
+    <script>
+        // 思路：
+        // 当用户点击标题栏的按钮[span]时，显示对应索引下标的内容块[.list]
+        // 代码实现：
+        var vm = new Vue({
+            el:"#card",
+            data:{
+                num:0,
+            },
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <script>
+    window.onload = function(){
+        // 创建vm对象
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                name:"大标题",
+                age:16,
+            },
+        })
+    }
+    </script>
+</head>
+<body>
+    <div id="app">
+        <!-- 在双标签中显示数据要通过{{  }}来完成 -->
+        <h1>{{name}}</h1>
+        <p>{{age}}</p>
+        <!-- 在表单输入框中显示数据要使用v-model来完成，模板语法的时候，我们会详细学习 -->
+        <input type="text" v-model="name">
+    </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>todolist</title>
+	<style type="text/css">
+		.list_con{
+			width:600px;
+			margin:50px auto 0;
+		}
+		.inputtxt{
+			width:550px;
+			height:30px;
+			border:1px solid #ccc;
+			padding:0px;
+			text-indent:10px;
+		}
+		.inputbtn{
+			width:40px;
+			height:32px;
+			padding:0px;
+			border:1px solid #ccc;
+		}
+		.list{
+			margin:0;
+			padding:0;
+			list-style:none;
+			margin-top:20px;
+		}
+		.list li{
+			height:40px;
+			line-height:40px;
+			border-bottom:1px solid #ccc;
+		}
+
+		.list li span{
+			float:left;
+		}
+
+		.list li a{
+			float:right;
+			text-decoration:none;
+			margin:0 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="list_con">
+		<h2>To do list</h2>
+		<input type="text" name="" id="txt1" class="inputtxt" v-model="dos">
+		<input type="button" name="" value="增加" id="btn1" class="inputbtn" @click="add">
+
+		<ul id="list" class="list">
+
+            <li v-for="(value,index) in dolist" :key="value.id">
+                <span>{{value.title}}</span>
+                <a href="javascript:;" class="up" @click="up(index)"> ↑ </a>
+				<a href="javascript:;" class="down" @click="down(index)"> ↓ </a>
+				<a href="javascript:;" class="del" @click="del(index)">删除</a>
+            </li>
+
+		</ul>
+	</div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'.list_con',
+        data(){
+            return {
+                dos:'',
+                dolist:[
+
+                    {'id':1,'title':'学习html'},
+                    {'id':2,'title':'学习css'},
+                    {'id':3,'title':'学习js'},
+
+                ],
+            }
+        },
+        methods:{
+            add(){
+                if (this.dos.trim().length === 0){  //strip()
+                    return false;
+                }
+                this.dolist.push({id:this.dolist.length+1,title:this.dos});
+                this.dos = ''
+            },
+            del(index){
+                // console.log(id);
+                this.dolist.splice(index,1);
+
+            },
+            up(index){
+
+                if (index === 0){
+                    return false
+                }
+                let del_ele = this.dolist.splice(index,1);
+                // console.log(del_ele);
+                this.dolist.splice(index-1,0,del_ele[0]);
+            },
+            down(index){
+
+                if (index === this.dolist.length-1){
+                    return false
+                }
+                let del_ele = this.dolist.splice(index,1);
+                // console.log(del_ele);
+                this.dolist.splice(index+1,0,del_ele[0]);
+            },
+
+
+        }
+
+    })
+
+
+</script>
+</html>

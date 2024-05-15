@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .c1{
+            color:red;
+        }
+        .c2{
+            font-size: 80px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h1 :class="{c1:num===1,c2:status}">{{msg}}</h1>
+    <button @click="num=2">走你</button>
+
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'徐乐，你好,需要服务吗？',
+                status:true,
+                num:1,
+            }
+        },
+        // 方法
+        methods:{
+
+        }
+
+    })
+
+
+</script>
+
+</html>

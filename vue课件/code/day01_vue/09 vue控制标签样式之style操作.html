@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id="app">
+
+    <span :style="s1">徐乐不需要服务</span>
+    <p :style="{backgroundColor:xx}">xxx</p>
+
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                s1:{
+                    color:'red',
+                    fontSize:'30px',
+                },
+                xx:'blue',
+            }
+        },
+        // 方法
+        methods:{
+
+        }
+
+    })
+
+
+</script>
+
+</html>

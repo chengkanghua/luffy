@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h2>28期皇家spa会所</h2>
+    <a v-bind:href="alink">百度</a>
+    <a :href="alink">百度</a>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'你好，王公豹',
+                alink:'http://www.baidu.com',
+            }
+        }
+
+    })
+
+
+</script>
+
+</html>

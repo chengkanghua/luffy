@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h2>{{msg}}</h2>
+    <button @click="zouni">走你</button>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'你好，王公豹',
+
+            }
+        },
+        // 方法
+        methods:{
+            zouni() {
+                // console.log(this);//Vue {_uid: 0, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: Vue, …}
+                this.msg = '你好，王天然';
+            }
+        }
+
+    })
+    // $('button').click(function({}))
+
+
+</script>
+
+</html>

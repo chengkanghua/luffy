@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+
+<div id="app">
+
+    <h1>{{msg}}</h1>
+    <h2>啥服务都有</h2>
+    <p>{{num+1}}</p>
+    <p style="color:red;">{{m.split('').reverse().join('')}}</p>
+
+</div>
+
+
+
+</body>
+<script src="js/vue.js"></script>
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.9/vue.js"></script> -->
+<script>
+    //MVVM框架，M--model--data数据  v--view视图--html标签
+    // VM--viewmodel -- 数据驱动视图 核心
+
+    let vm = new Vue({
+        el:'#app',  //css选择器的写法，圈地
+        // 方式1
+        // data:{  //数据属性
+        //     msg:'28期皇家会所',
+        // }
+
+        //方式2
+        // data:function(){
+        //     return {
+        //         msg:'28期皇家会所',
+        //     }
+        // }
+
+        //方式3 单体模式
+        data(){
+            return {
+                msg:'28期皇家会所2',
+                num:100,
+                m:'hello',
+            }
+        }
+
+    });
+
+
+</script>
+
+</html>

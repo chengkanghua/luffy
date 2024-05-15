@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <input :type="type" placeholder="请输入密码">
+   <button @click="showPassword">{{msg}}</button>
+    <!-- <button @click="type=(type==='text'?'password': 'text')">{{msg}}</button> -->
+<!--    a>b?a:b-->
+<!--    a if a>b else b-->
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'显示密码',
+                type:'password'
+            }
+        },
+        // 方法
+        methods:{
+            showPassword() {
+                if (this.type === 'password'){
+                    this.type = 'text';
+                    this.msg='隐藏密码';
+                }else {
+                    this.type = 'password';
+                    this.msg='显示密码';
+                }
+
+            }
+        }
+
+    })
+    // $('button').click(function({}))
+
+
+</script>
+
+</html>

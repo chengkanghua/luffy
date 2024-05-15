@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .c1{
+            background-color: red;
+            height: 100px;
+        }
+        .c2{
+            height: 40px;
+            width: 40px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <div class="c1" @click="f1">
+        <div class="c2" @click.stop="f2"></div>
+    </div>
+    <a href="http://www.baidu.com" @click.stop.prevent="">百度</a>
+</div>
+
+
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {}
+        },
+        methods:{
+            f1(){
+                alert('父级标签');
+            },
+            f2(){
+                alert('子标签');
+            }
+        }
+    })
+
+
+
+</script>
+</html>

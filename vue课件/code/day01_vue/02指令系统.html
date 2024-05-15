@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h1>{{msg}}</h1>
+    <h1 v-text="msg"></h1>
+    <p v-text="taga"></p>
+    <p v-html="taga"></p>
+
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'你好，王公豹',
+                taga:'<a href="http://www.baidu.com">王天然</a>',
+                status:true,
+            }
+        }
+
+    })
+
+
+</script>
+
+</html>

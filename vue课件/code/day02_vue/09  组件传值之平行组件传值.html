@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <App></App>
+</div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    let bus = new Vue();
+
+
+    Vue.component('t1',{
+        data(){
+            return {
+                t1_num:80,
+            }
+        },
+        template:`<div>
+            <h1>t1组件</h1>
+            <button @click="chuanzhi">传值</button>
+        </div>`,
+
+        methods:{
+            chuanzhi(){
+                bus.$emit('xxx',this.t1_num);
+            }
+        }
+    });
+
+    Vue.component('t2',{
+        data(){
+            return {
+                t1_num:70,
+                from_t1_data:'',
+            }
+        },
+        template:`<div>
+            <h1>t2组件</h1>
+            <h2 style="color:red;">{{from_t1_data}}</h2>
+        </div>`,
+        created(){
+            console.log('t2...');
+            console.log(this);
+            bus.$on('xxx',(val) => {  //监听
+                console.log('ssssss');
+                console.log(this);
+                this.from_t1_data = val;
+            })
+        }
+    })
+
+
+    let App = {
+        data(){
+            return {
+                app_num:100,
+                son_data:'',
+            }
+        },
+        template:`
+        <div class="a">
+            <t1></t1>
+            <t2></t2>
+
+        </div>`,
+
+
+    };
+
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {}
+        },
+        components:{
+            App,
+        }
+    });
+
+
+
+
+</script>
+</html>

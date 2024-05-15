@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h2>28期皇家spa会所</h2>
+   <a href="" class="" title=""></a>
+   <h1 v-if="status">{{msg}}</h1>
+   <h1 v-else>xxx</h1>
+    <h1 v-show="n===0">{{msg}}</h1>
+</div>
+
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                msg:'你好，王公豹',
+                taga:'<a href="http://www.baidu.com">王天然</a>',
+                status:false,
+                n:2,
+            }
+        }
+
+    })
+
+
+</script>
+
+</html>

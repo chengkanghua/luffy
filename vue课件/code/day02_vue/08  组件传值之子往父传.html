@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <App></App>
+</div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+
+    let Vheader = {
+        data(){
+            return {
+                vheader_num:20,
+            }
+        },
+        template: `
+        <div class="header">
+            <h2>vheader组件的值：{{vheader_num}}</h2>
+            <button @click="sonClick">走你</button>
+        </div>`,
+        methods:{
+            sonClick(){
+                this.$emit('fuck',this.vheader_num);  //$emit 把值传给父组件
+            }
+        },
+        // created:{
+        //     $.ajax({})
+        // }
+    }
+
+
+    let App = {
+        data(){
+            return {
+                app_num:100,
+                son_data:'',
+            }
+        },
+        template:`
+        <div class="a">
+            <Vheader @fuck="recv_con_num"></Vheader>  
+            <h1>app组件的值：{{app_num}}</h1>
+            <h3 style="color:pink;">{{son_data}}</h3>
+        </div>`,
+        components: {
+            Vheader,
+        },
+        methods:{
+            recv_con_num(val){
+                this.son_data = val;
+            }
+        },
+
+    };
+
+    let vm = new Vue({
+        el:'#app',
+        data(){
+            return {}
+        },
+        components:{
+            App,
+        }
+    });
+
+
+
+
+</script>
+</html>

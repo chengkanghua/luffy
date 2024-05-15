@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+    <!-- <script src="js/vue.js"></script> -->
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.9/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="box1" @click="show1('box1')">
+		  <!--事件冒泡： 点击box2div时候同时会触发 box1的点击事件，防止这种情况 @click.stop-->
+          <div class="box2" @click.stop="show2('box2')"></div>   <!-- @click.stop来阻止事件冒泡,下面再加个prevent也可以 -->
+          <div class="box2" @click.stop.prevent="show2('box2')"></div> 
+        </div>
+
+        <form action="#">
+            <input type="text">
+            <input type="submit">
+            <input type="submit" value="提交02" @click.prevent=""> <!-- @click.prevent来阻止表单提交，从而不刷新页面 -->
+        </form>
+    </div>
+
+</body>
+  <script>
+	
+	let vm = new Vue({
+	    el:'#app',
+	    data(){
+	        return {
+				currentIndex:1,
+				'msg':'hello',
+				'price':200.1,
+				inp:'',
+			}
+	    },
+	    methods:{
+	        show1(val){
+	            alert('父级标签'+ val);
+	        },
+	        show2(val){
+	            alert('子标签' + val);
+	        }
+	    }
+	})
+
+</script>
+</html>
