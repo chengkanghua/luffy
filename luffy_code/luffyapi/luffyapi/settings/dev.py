@@ -14,7 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-print(BASE_DIR)
+# print(BASE_DIR)
 # 新增一个系统导包路径
 import sys
 #sys.path使我们可以直接import导入时使用到的路径，所以我们直接将我们的apps路径加到默认搜索路径里面去，那么django就能直接找到apps下面的应用了
@@ -206,9 +206,12 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = (
     #'www.luffycity.cn:8080', #如果这样写不行的话，就加上协议(http://www.luffycity.cn:8080，因为不同的corsheaders版本可能有不同的要求)
-    ['http://www.luffycity.cn:8080']
+    ['http://www.luffycity.cn:*']
 )
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False  # 是否允许ajax跨域请求时携带cookie，False表示不用，我们后面也用不到cookie，所以关掉它就可以了，以防有人通过cookie来搞我们的网站
+
+
 
 # 访问静态文件的url地址前缀
 STATIC_URL = '/static/'
