@@ -71,10 +71,12 @@ class SMSAPIView(APIView):
             # send_message("模板id",'手机号码,',datas = ('验证码1-4位', '有效时间'))
             # 短信模板ID 在测试阶段是1
             datas = (code, constants.SMS_EXPIRE_TIME // 60)
-            result = send_message(constants.SMS_TEMPLATE_ID,mobile,datas)
-            if result == 0:
-                logger.error("发送短信出错！手机号：%s" % mobile)
-                return Response({"status":"0","result":"短信发送失败！"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            from mycelery.sms.tasks import send_sms
+            # result = send_message(constants.SMS_TEMPLATE_ID,mobile,datas)
+            send_sms(mobile,datas,constants.SMS_TEMPLATE_ID)
+            # if result == 0:
+            #     logger.error("发送短信出错！手机号：%s" % mobile)
+            #     return Response({"status":"0","result":"短信发送失败！"},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         except Exception as e:
             logger.error("发送短信出错！%s" % e)
             return Response({"status":"0","result":"服务器发送短信有误！"},status=status.HTTP_507_INSUFFICIENT_STORAGE)

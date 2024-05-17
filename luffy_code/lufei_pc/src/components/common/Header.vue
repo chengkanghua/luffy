@@ -122,7 +122,7 @@
       methods:{
         ulShowHandler(){
           this.s_status = false;
-          console.log(this.$refs.Input);
+          // console.log(this.$refs.Input);
 
           // this.$refs.Input.focus();
           this.$nextTick(()=>{
@@ -153,7 +153,7 @@
         check_user_login(){
           // 从sessionStorage或者localStorage里面去token来判断是否已经登录了
           this.token = sessionStorage.user_token || localStorage.user_token
-          console.log(this.token)
+          // console.log(this.token)
         },
 
         logoutHander(){
