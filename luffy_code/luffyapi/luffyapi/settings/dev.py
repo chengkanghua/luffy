@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'reversion',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -201,6 +202,16 @@ LOGGING = {
 REST_FRAMEWORK = {
     # 异常处理
     'EXCEPTION_HANDLER': 'luffyapi.utils.exceptions.custom_exception_handler',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+            'rest_framework.authentication.SessionAuthentication',
+            'rest_framework.authentication.BasicAuthentication',
+        ),
+}
+import datetime
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.utils.jwt_response_payload_handler',
 }
 
 
@@ -225,15 +236,54 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"uploads")
 # 访问上传文件的url地址前缀
 MEDIA_URL ="/media/"
 
+#注册自定义用户模型，格式：“应用名.模型类名”
+AUTH_USER_MODEL = 'users.User'
+
+# 自定义的认证后端
+AUTHENTICATION_BACKENDS = [
+    'users.utils.UsernameMobileAuthBackend',
+]
+
+# 设置redis缓存
+CACHES = {
+    # 默认缓存
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        # 项目上线时,需要调整这里的路径
+        "LOCATION": "redis://127.0.0.1:6379/0",
+
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    # 提供给xadmin或者admin的session存储
+    "session": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    # 提供存储短信验证码
+    "sms_code":{
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+# 设置xadmin用户登录时,登录信息session保存到redis
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "session"
 
 
-
-
-
-
-
-
-
+SMS = {
+    "accId" : '8a216da881ad97540181d8e645e20809',
+    "accToken" : 'e9aacc7819774ca39916f472c6083684',
+    "appId" : '8a216da881ad97540181d8e646e70810',
+}
 
 
 

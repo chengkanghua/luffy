@@ -57,7 +57,11 @@ class BannerModelAdmin(object):
 
 xadmin.site.register(Banner, BannerModelAdmin)
 
-
+# 导航菜单
+from home.models import Nav
+class NavModelAdmin(object):
+    list_display=["title","link","is_show","is_site","position"]
+xadmin.site.register(Nav, NavModelAdmin)
 
 
 

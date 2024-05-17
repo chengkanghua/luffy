@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
 import Home from "../components/Home";
+import Login from "../components/Login"
+import Register from "../components/Register"
+
+
 export default new Router({
   mode:"history",
   routes: [
@@ -18,6 +21,16 @@ export default new Router({
       // name: 'HelloWorld',  路由别名  url('',name='')
       component: Home,
     },
+   {
+      name:"Login",
+      path: "/user/login",
+      component:Login,
+    },
+    {
+      name:"Register",
+      path:"/register",
+      component:Register,
+    }
   ],
 
 })
