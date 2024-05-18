@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'corsheaders',
     'home',
     # xadmin后台
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'reversion',
     'users',
+    'course',
+
 ]
 
 MIDDLEWARE = [
@@ -285,7 +288,7 @@ SMS = {
     "appId" : '8a216da881ad97540181d8e646e70810',
 }
 
-
+SILENCED_SYSTEM_CHECKS = ['fields.E300',]
 
 
 
