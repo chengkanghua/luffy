@@ -57,10 +57,47 @@ class BannerModelAdmin(object):
 
 xadmin.site.register(Banner, BannerModelAdmin)
 
+# 导航菜单
+from home.models import Nav
+class NavModelAdmin(object):
+    list_display=["title","link","is_show","is_site","position"]
+xadmin.site.register(Nav, NavModelAdmin)
+
+
+from course.models import CourseCategory
+class CourseCategoryModelAdmin(object):
+    """课程分类模型管理类"""
+    pass
+xadmin.site.register(CourseCategory, CourseCategoryModelAdmin)
+
+
+from course.models import Course
+class CourseModelAdmin(object):
+    """课程模型管理类"""
+    pass
+xadmin.site.register(Course, CourseModelAdmin)
+
+
+from course.models import Teacher
+class TeacherModelAdmin(object):
+    """老师模型管理类"""
+    pass
+xadmin.site.register(Teacher, TeacherModelAdmin)
+
+
+from course.models import CourseChapter
+class CourseChapterModelAdmin(object):
+    """课程章节模型管理类"""
+    pass
+xadmin.site.register(CourseChapter, CourseChapterModelAdmin)
 
 
 
-
+from course.models import CourseLesson
+class CourseLessonModelAdmin(object):
+    """课程课时模型管理类"""
+    pass
+xadmin.site.register(CourseLesson, CourseLessonModelAdmin)
 
 
 

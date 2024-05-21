@@ -14,7 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-print(BASE_DIR)
+# print(BASE_DIR)
 # 新增一个系统导包路径
 import sys
 #sys.path使我们可以直接import导入时使用到的路径，所以我们直接将我们的apps路径加到默认搜索路径里面去，那么django就能直接找到apps下面的应用了
@@ -47,12 +47,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'corsheaders',
     'home',
     # xadmin后台
     'xadmin',
     'crispy_forms',
     'reversion',
+    'users',
+    'course',
+
 ]
 
 MIDDLEWARE = [
@@ -201,14 +205,27 @@ LOGGING = {
 REST_FRAMEWORK = {
     # 异常处理
     'EXCEPTION_HANDLER': 'luffyapi.utils.exceptions.custom_exception_handler',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+            'rest_framework.authentication.SessionAuthentication',
+            'rest_framework.authentication.BasicAuthentication',
+        ),
+}
+import datetime
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.utils.jwt_response_payload_handler',
 }
 
 
 CORS_ORIGIN_WHITELIST = (
     #'www.luffycity.cn:8080', #如果这样写不行的话，就加上协议(http://www.luffycity.cn:8080，因为不同的corsheaders版本可能有不同的要求)
-    ['http://www.luffycity.cn:8080']
+    ['http://www.luffycity.cn:*']
 )
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False  # 是否允许ajax跨域请求时携带cookie，False表示不用，我们后面也用不到cookie，所以关掉它就可以了，以防有人通过cookie来搞我们的网站
+
+
 
 # 访问静态文件的url地址前缀
 STATIC_URL = '/static/'
@@ -222,17 +239,56 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"uploads")
 # 访问上传文件的url地址前缀
 MEDIA_URL ="/media/"
 
+#注册自定义用户模型，格式：“应用名.模型类名”
+AUTH_USER_MODEL = 'users.User'
+
+# 自定义的认证后端
+AUTHENTICATION_BACKENDS = [
+    'users.utils.UsernameMobileAuthBackend',
+]
+
+# 设置redis缓存
+CACHES = {
+    # 默认缓存
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        # 项目上线时,需要调整这里的路径
+        "LOCATION": "redis://127.0.0.1:6379/0",
+
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    # 提供给xadmin或者admin的session存储
+    "session": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    # 提供存储短信验证码
+    "sms_code":{
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+# 设置xadmin用户登录时,登录信息session保存到redis
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "session"
 
 
+SMS = {
+    "accId" : '8a216da881ad97540181d8e645e20809',
+    "accToken" : 'e9aacc7819774ca39916f472c6083684',
+    "appId" : '8a216da881ad97540181d8e646e70810',
+}
 
-
-
-
-
-
-
-
-
+SILENCED_SYSTEM_CHECKS = ['fields.E300',]
 
 
 
