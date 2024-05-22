@@ -1,5 +1,13 @@
 
 
+#服务端地址
+SERVER_HOST = "http://api.luffycity.cn:8000"
+
+# 积分和现金的兑换比例[兑换1元的积分数量]
+CREDIT_MONEY = 10
+
+#超时取消的时间段,以秒为单位
+ORDER_OUTTIME = 12 * 60 * 60
 
 
 #　轮播的显示数量
@@ -18,3 +26,6 @@ SMS_TEMPLATE_ID = 1
 
 # 短信发送的间隔时间
 SMS_INTERVAL_TIME = 60
+
+
+SERVER_IMAGE_DOMAIN = "http://api.luffycity.cn:8000"

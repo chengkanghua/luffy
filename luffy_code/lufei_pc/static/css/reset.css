@@ -49,6 +49,23 @@ img{
   margin-top:80px;
 } */
 
-.course .main{
-    margin-bottom: 142px;
+.el-pagination button, .el-pagination span:not([class*=suffix]),
+.el-input--mini,
+.el-pagination__sizes .el-input .el-input__inner,
+.el-pager li{
+  font-size: 16px;
+}
+
+.el-pagination{
+  text-align: center;
+    padding-top: 20px;
+    padding-bottom: 50px;
+  }
+
+.course-brief img{
+  width: 100%;
+}
+
+.main{
+  margin-bottom: 130px;
 }

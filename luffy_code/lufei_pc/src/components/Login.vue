@@ -83,7 +83,8 @@ export default {
           let self=this;
           this.$alert('登录成功','牛哄哄',{
             callback(){
-              self.$router.push('/'); //编程式导航
+              // self.$router.push('/'); //编程式导航
+              self.$router.go(-1);
             }
           })
 

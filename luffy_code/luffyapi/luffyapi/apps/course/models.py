@@ -1,6 +1,8 @@
+from datetime import datetime
+
 from django.db import models
 from luffyapi.utils.model import BaseModel
-
+from luffyapi.settings import constants
 
 # Create your models here.
 
@@ -75,7 +77,7 @@ class CourseLesson(BaseModel):
 
     def __str__(self):
         return "%s-%s" % (self.chapter, self.name)
-        from django.db import models
+
 
 class CourseCategory(BaseModel):
     """
@@ -91,7 +93,7 @@ class CourseCategory(BaseModel):
     def __str__(self):
         return "%s" % self.name
 
-
+from ckeditor_uploader.fields import RichTextUploadingField
 class Course(BaseModel):
     """
     专题课程
@@ -113,11 +115,13 @@ class Course(BaseModel):
     )
     name = models.CharField(max_length=128, verbose_name="课程名称")
     course_img = models.ImageField(upload_to="course", max_length=255, verbose_name="封面图片", blank=True, null=True)
+    course_video = models.FileField(upload_to='video', null=True, blank=True, verbose_name='封面视频')
 
     # 费用类型字段是为了后期一些其他功能拓展用的，现在可以先不用，或者去掉它，目前我们项目用不到
     course_type = models.SmallIntegerField(choices=course_type, default=0, verbose_name="付费类型")
     # 这个字段是课程详情页里面展示的，并且详情介绍里面用户将来可能要上传一些图片之类的，所以我们会潜入富文本编辑器，让用户填写数据的时候可以上传图片啊、写标题啊、css、html等等内容
-    brief = models.TextField(max_length=2048, verbose_name="详情介绍", null=True, blank=True)
+    # brief = models.TextField(max_length=2048, verbose_name="详情介绍", null=True, blank=True)
+    brief = RichTextUploadingField(max_length=2048, verbose_name="课程概述", null=True, blank=True)
 
     level = models.SmallIntegerField(choices=level_choices, default=1, verbose_name="难度等级")
     pub_date = models.DateField(verbose_name="发布日期", auto_now_add=True)
@@ -135,8 +139,9 @@ class Course(BaseModel):
     pub_lessons = models.IntegerField(verbose_name="课时更新数量", default=0)
 
     # 课程原价
-    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="课程原价", default=0)
+    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="课程原价", default=0,help_text='如果填写的价格为0，那么表示当前课程在购买的时候，没有永久有效的期限。')
     teacher = models.ForeignKey(Teacher, on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name="授课老师")
+
 
     class Meta:
         db_table = "ly_course"
@@ -148,7 +153,6 @@ class Course(BaseModel):
 
     def lesson_list(self):
         """获取当前课程的前8个课时展示到列表中"""
-
         # 获取所有章节
         chapters_list = self.coursechapters.filter(is_deleted=False,is_show=True)
         lesson_list = []
@@ -164,5 +168,201 @@ class Course(BaseModel):
                         })
 
         return lesson_list[:4]
+
+    @property
+    def level_name(self):
+        return self.level_choices[self.level][1]
+
+    def brief_html(self):
+        host = constants.SERVER_HOST
+        html = self.brief.replace('src="/media',f'src="{host}/media')
+        return html
+
+    def active_list(self):
+        active_lists = self.activeprices.filter(is_show=True, is_deleted=False, active__start_time__lte=datetime.now(),active__end_time__gte=datetime.now())
+        # 一个商品可能多个活动策略
+        return active_lists
+
+    @property
+    def discount_name(self):
+        name = ''
+        active_lists = self.active_list()
+        # print(active_lists)
+        if len(active_lists) > 0:
+            active_obj = active_lists[0]  # 只取第一条
+            name = active_obj.discount.discount_type.name
+        return name
+
+    # @property
+    # def real_price(self):
+    #     return self.price
+
+    # @property
+    def real_price(self,expire_id=0):
+        """真实价格计算"""
+        price = float(self.price)  #原价
+        try:
+            if expire_id > 0:
+                expire_obj = CourseExpire.objects.get(is_show=True, is_deleted=False, id=expire_id)
+                price = float(expire_obj.price)
+                # print('xxxxxx',self.id,price) #xxxxxx 1 588.00
+        except:
+            pass
+
+        active_lists = self.active_list()
+        if len(active_lists) > 0:
+            active = active_lists[0]        #取第一条活动策略
+            sale = active.discount.sale     # 优惠计算公式
+            condition = active.discount.condition  # 优惠满足条件 -满多少
+            if price > condition:
+                if sale == '':
+                    price = 0
+                elif sale[0] == '*':
+                    price = price * float(sale[1:])
+                elif sale[0] == '-':
+                    price = price - float(sale[1:])
+                elif sale[0] == '满':
+                    '''
+                    满500-80
+                    满400-40
+                    360
+                    满300-20
+                    满200-10
+                    '''
+                    man_list = sale.split('\r\n')
+                    con_price_list = [] # 可以满减的条件列表
+                    for man in man_list:
+                        condition_price,xx_price = man[1:].split('-')
+                        if price > float(condition_price):
+                            con_price_list.append(float(xx_price))
+                    price = price - max(con_price_list)  #取减的最多的那个
+
+        return "%.2f" % price
+
+    @property
+    def active_time(self):
+        left_time = 0
+        active_lists = self.active_list()
+        if len(active_lists) > 0:
+            active_obj = active_lists[0]
+            end_time = active_obj.active.end_time.timestamp()
+
+            now_time = datetime.now().timestamp()
+            left_time = end_time - now_time  #剩余时间的时间戳
+
+        return int(left_time)
+
+    @property
+    def expire_list(self):
+        """课程有效期选项"""
+        expires = self.course_expire.filter(is_show=True,is_deleted=False)
+
+        data = []
+        for expire in expires:
+            data.append({
+                'id':expire.id,
+                'expire_text':expire.expire_text,
+                'price':expire.price,
+            })
+        # 增加永久有效选项 #如果价格为0就没有永久有效
+        if self.price > 0:
+            data.append({
+                'id': 0,
+                'expire_text': '永久有效',
+                'price': self.price,
+            })
+
+        return data
+
+
+"""价格相关的模型"""
+class CourseDiscountType(BaseModel):
+    """课程优惠类型"""
+    name = models.CharField(max_length=32, verbose_name="优惠类型名称")
+    remark = models.CharField(max_length=250, blank=True, null=True, verbose_name="备注信息")
+
+    class Meta:
+        db_table = "ly_course_discount_type"
+        verbose_name = "课程优惠类型"
+        verbose_name_plural = "课程优惠类型"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+class CourseDiscount(BaseModel):
+    """课程优惠策略"""
+    discount_type = models.ForeignKey("CourseDiscountType", on_delete=models.CASCADE, related_name='coursediscounts', verbose_name="优惠类型")
+    condition = models.IntegerField(blank=True, default=0, verbose_name="满足优惠的价格条件",help_text="设置参与优惠的价格门槛，表示商品必须在xx价格以上的时候才参与优惠活动，<br>如果不填，则不设置门槛") #因为有的课程不足100，你减免100，还亏钱了
+    sale = models.TextField(verbose_name="优惠公式",blank=True,null=True, help_text="""
+    优惠公式：
+    不填表示免费；<br>
+    *号开头表示折扣价，例如*0.82表示八二折；<br>
+    -号开头则表示减免，例如-20表示原价-20；<br>
+    如果需要表示满减,则需要使用 原价-优惠价格,例如表示课程价格大于100,优惠10;大于200,优惠25,格式如下:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;满100-10<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;满200-25<br>
+    """)
+
+    class Meta:
+        db_table = "ly_course_discount"
+        verbose_name = "价格优惠策略"
+        verbose_name_plural = "价格优惠策略"
+
+    def __str__(self):
+        return "价格优惠:%s,优惠条件:%s,优惠值:%s" % (self.discount_type.name, self.condition, self.sale)
+
+class Activity(BaseModel):
+    """优惠活动"""
+    name = models.CharField(max_length=150, verbose_name="活动名称")
+    start_time = models.DateTimeField(verbose_name="优惠策略的开始时间")
+    end_time = models.DateTimeField(verbose_name="优惠策略的结束时间")
+    remark = models.CharField(max_length=250, blank=True, null=True, verbose_name="备注信息")
+
+    class Meta:
+        db_table = "ly_activity"
+        verbose_name="商品活动"
+        verbose_name_plural="商品活动"
+
+    def __str__(self):
+        return self.name
+
+class CoursePriceDiscount(BaseModel):
+    """课程与优惠策略的关系表"""
+    course = models.ForeignKey("Course",on_delete=models.CASCADE, related_name="activeprices",verbose_name="课程")
+    active = models.ForeignKey("Activity",on_delete=models.DO_NOTHING, related_name="activecourses",verbose_name="活动")
+    discount = models.ForeignKey("CourseDiscount",on_delete=models.CASCADE,related_name="discountcourse",verbose_name="优惠折扣")
+
+    class Meta:
+        db_table = "ly_course_price_dicount"
+        verbose_name="课程与优惠策略的关系表"
+        verbose_name_plural="课程与优惠策略的关系表"
+
+    def __str__(self):
+        return "课程：%s，优惠活动: %s,开始时间:%s,结束时间:%s" % (self.course.name, self.active.name, self.active.start_time,self.active.end_time)
+
+
+class CourseExpire(BaseModel):
+    """课程有效期模型"""
+    # 后面可以在数据库把course和expire_time字段设置为联合索引
+    course = models.ForeignKey("Course", related_name='course_expire', on_delete=models.CASCADE, verbose_name="课程名称")
+
+    # 有效期限，天数
+    expire_time = models.IntegerField(verbose_name="有效期", null=True, blank=True, help_text="有效期按天数计算")
+
+    # 一个月有效等等
+    expire_text = models.CharField(max_length=150, verbose_name="提示文本", null=True, blank=True)
+    # 每个有效期的价格
+    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="课程价格", default=0)
+
+    class Meta:
+        db_table = "ly_course_expire"
+        verbose_name = "课程有效期"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return "课程：%s，有效期：%s，价格：%s" % (self.course, self.expire_text, self.price)
+
+
+
 
 

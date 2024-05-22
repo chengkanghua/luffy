@@ -29,21 +29,21 @@
             <img src="/static/image/course-cover.jpeg" alt="course.name">
           </div>
           <div class="course-info">
-            <h3><router-link to="`/course/detail/${course.id}`">{{course.name}}</router-link> <span><img src="/static/image/avatar1.svg" alt="">{{course.students}}人已加入学习</span></h3>
+            <h3><router-link :to="`detail/${course.id}/`">{{course.name}}</router-link> <span><img src="/static/image/avatar1.svg" alt="">{{course.students}}人已加入学习</span></h3>
             <p class="teather-info">{{course.teacher.name}} {{course.teacher.signature}} {{course.teacher.title}}<span>共{{course.lessons}}课时/{{course.lessons==course.pub_lessons?'更新完成':`已更新${course.pub_lessons}课时`}}</span></p>
             <ul class="lesson-list">
-              <li v-for="lesson,key in course.lesson_list">
-                <span class="lesson-title">0{{key+1}} | {{lesson.name}}</span>
-                <span v-if="lesson.free_trail" class="free">免费</span>
+              <li v-for="item,key in course.lesson_list">
+                <span class="lesson-title">0{{key+1}} | 第{{item.lesson}}节： {{item.name}}</span>
+                <span v-if="item.free_trail" class="free">免费</span>
 
               </li>
 
 
             </ul>
             <div class="pay-box">
-              <span class="discount-type">限时免费</span>
-              <span class="discount-price">￥0.00元</span>
-              <span class="original-price">原价：{{course.price}}元</span>
+              <span class="discount-type" v-if="course.discount_name">{{course.discount_name}}</span>
+              <span class="discount-price">￥{{course.real_price}}元</span>
+              <span class="original-price" v-if="course.discount_name">原价：{{course.price}}元</span>
               <span class="buy-now">立即购买</span>
             </div>
           </div>
@@ -136,7 +136,7 @@
 
             // 获取课程信息
             //http://api.luffycity.cn:8000/course/?course_category=6&ordering=id
-            this.$axios.get(`${this.$settings.Host}/course/`,{
+            this.$axios.get(`${this.$settings.Host}/course/list/`,{
               params: filters
             }).then(response=>{
                 console.log(response)

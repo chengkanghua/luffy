@@ -25,5 +25,7 @@ urlpatterns = [
     path('home/', include("home.urls")),
     path('user/', include("users.urls")),
     path('course/', include("course.urls")),
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    path('cart/', include("cart.urls") ),
 
 ]
