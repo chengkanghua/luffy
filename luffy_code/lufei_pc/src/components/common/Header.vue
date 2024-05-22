@@ -36,14 +36,14 @@
               </p>
             </div>
             <div class="register" v-show="!token">
-              <router-link to="/user/login"><button class="signin">登录</button></router-link>
+              <router-link to="/login"><button class="signin">登录</button></router-link>
               &nbsp;&nbsp;|&nbsp;&nbsp;
                 <router-link to="/register"><button class="signup">注册</button></router-link>
 
             </div>
             <div class="shop-car" v-show="token">
-              <router-link to="/">
-                <b>6</b>
+              <router-link to="/cart/">
+                <b>{{$store.state.cart.cart_length}}</b>
                 <img src="@/assets/shopcart.png" alt="">
                 <span>购物车 </span>
               </router-link>
@@ -175,6 +175,12 @@
         this.get_nav_data();
         //检查用户登录状态
         this.check_user_login();
+        let cart_length = sessionStorage.getItem('cart_length');
+        if (cart_length){
+          this.$store.commit('add_cart',cart_length);
+        }
+        this.cart_length = this.$store.state.cart.cart_length;
+
       }
 
     }

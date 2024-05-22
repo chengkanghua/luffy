@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'corsheaders',
+    'ckeditor',  # 富文本编辑器
+    'ckeditor_uploader',  # 富文本编辑器上传图片模块
     'home',
     # xadmin后台
     'xadmin',
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
     'reversion',
     'users',
     'course',
+    'cart',
 
 ]
 
@@ -146,6 +149,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 项目中存储上传文件的根目录[暂时配置]，注意，uploads目录需要手动创建否则上传文件时报错
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")  # upload_to='banner' 自动上传到uploads/banner/图片.png
+# 访问上传文件的url地址前缀
+MEDIA_URL = "/media/"  # http://api.luffycity.cn:8001/media/1.png
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -274,7 +282,16 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
-    }
+    },
+    "cart": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/3",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+
+
 }
 
 # 设置xadmin用户登录时,登录信息session保存到redis
@@ -291,7 +308,30 @@ SMS = {
 SILENCED_SYSTEM_CHECKS = ['fields.E300',]
 
 
+# 富文本编辑器ckeditor配置
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',  # 工具条功能,full表示全部，Basic表示基本功能，功能少很多，还有个Custom自定义功能选项
+        'height': 300,      # 编辑器高度
+        # 'width': 300,     # 编辑器宽
+    },
+}
+CKEDITOR_UPLOAD_PATH = ''  # 上传图片保存路径，留空则调用django的文件上传功能
 
+
+
+#自定义
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline','Image'],  #通过浏览器f12来查看每个功能的标签，就看到了类值cke_button_工具名称[注意使用驼峰式来写]
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
+    }
+}
 
 
 

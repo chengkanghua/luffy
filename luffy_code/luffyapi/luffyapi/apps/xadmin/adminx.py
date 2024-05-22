@@ -99,5 +99,34 @@ class CourseLessonModelAdmin(object):
     pass
 xadmin.site.register(CourseLesson, CourseLessonModelAdmin)
 
+from course.models import CourseDiscountType
+class CourseExpireModelAdmin(object):
+    """课程与有效期模型管理类"""
+    pass
+xadmin.site.register(CourseDiscountType, CourseExpireModelAdmin)
+
+from course.models import CourseDiscount
+class PriceDiscountTypeModelAdmin(object):
+    """价格优惠类型"""
+    pass
+xadmin.site.register(CourseDiscount, PriceDiscountTypeModelAdmin)
 
 
+from course.models import Activity
+class PriceDiscountModelAdmin(object):
+    """价格优惠公式"""
+    pass
+xadmin.site.register(Activity, PriceDiscountModelAdmin)
+
+
+from course.models import CoursePriceDiscount
+class CoursePriceDiscountModelAdmin(object):
+    """商品优惠和活动的关系"""
+    pass
+xadmin.site.register(CoursePriceDiscount, CoursePriceDiscountModelAdmin)
+
+from course.models import CourseExpire
+class CourseExpireModelAdmin(object):
+    """商品有效期模型"""
+    pass
+xadmin.site.register(CourseExpire, CourseExpireModelAdmin)
