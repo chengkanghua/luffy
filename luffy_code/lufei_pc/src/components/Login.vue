@@ -66,18 +66,18 @@ export default {
           localStorage.user_token = data.token;
           localStorage.user_id = data.id;
           localStorage.user_name = data.username;
-        //   // 'credit':user.credit,
-        // // 'credit_to_money':contants.CREDIT_MONEY,
-        //   localStorage.credit = data.credit;
-        //   localStorage.credit_to_money = data.credit_to_money;
+          // 'credit':user.credit,
+          // 'credit_to_money':contants.CREDIT_MONEY,
+          localStorage.credit = data.credit;
+          localStorage.credit_to_money = data.credit_to_money;
 
         }else{
           localStorage.clear();
           sessionStorage.user_token = data.token;
           sessionStorage.user_id = data.id;
           sessionStorage.user_name = data.username;
-          // sessionStorage.credit = data.credit;
-          // sessionStorage.credit_to_money = data.credit_to_money;
+          sessionStorage.credit = data.credit;
+          sessionStorage.credit_to_money = data.credit_to_money;
         }
           // this.$router.push('/');
           let self=this;

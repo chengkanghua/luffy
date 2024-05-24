@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>16 执行环境栈</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 执行环境栈:其实就是一个出栈和压栈的过程
+			var a = 1;
+			var b = 2;
+			function fn(x) {
+				var a = 10;
+				function bar(x) {
+					var a = 100;
+					b = x + a;
+					return b;
+				}
+				bar(20);
+				bar(200);
+			}
+			fn(0);
+			console.log(a,b);  //1 300
+			
+			
+		</script>
+	</body>
+</html>

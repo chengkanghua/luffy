@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>10 多值运动</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			div{
+				width: 300px;
+				height: 150px;
+				background-color: royalblue;
+				margin: 20px 0;
+				border: 4px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var allBoxs = document.getElementsByTagName('div');
+				allBoxs[0].onmouseover = function() {
+					startAnimation(this, 'width', 600);
+				}
+				allBoxs[0].onmouseout = function() {
+					startAnimation(this, 'width', 300);
+				}
+				allBoxs[1].onmouseover = function() {
+					startAnimation(this, 'height', 300);
+				}
+				allBoxs[1].onmouseout = function() {
+					startAnimation(this, 'height', 150);
+				}
+				var speed = 0;
+
+				function startAnimation(obj, attr, endTarget) {
+					// 针对于多物体运动,定时器的返回值要绑定当前的对象中.
+					clearInterval(obj.timer);
+					obj.timer = setInterval(function() {
+						// 0 获取样式属性
+						var cur = parseInt(getStyle(obj, attr));
+						// 1.求速度
+						speed = (endTarget - cur) / 20;
+						speed = endTarget > cur ? Math.ceil(speed) : Math.floor(speed);
+
+						// 2.临界处理
+						if (endTarget === cur) {
+							clearInterval(obj.timer);
+							return;
+						}
+						// 3.运动起来
+						obj.style[attr] = cur + speed + 'px';
+					}, 30);
+				}
+				/**
+				 * 获取元素属性的函数
+				 * @param {Object} obj 当前元素对象
+				 * @param {Object} attr 当前元素对象的属性
+				 */
+				function getStyle(obj, attr) {
+					if (obj.currentStyle) {
+						// 兼容ie
+						return obj.currentStyle[attr];
+					} else {
+						// 兼容主流浏览器
+						return getComputedStyle(obj, null)[attr];
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>02 事件捕获介绍</title>
+		<style type="text/css">
+			#box{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			// 事件冒泡: 事件开始时由最具体的元素接收,然后逐级向上传播到较为不具体的节点(文档)
+			/* var box = document.getElementById('box');
+			box.onclick = function (){
+				box.innerHTML += 'div\n';
+			}
+			document.body.onclick = function (){
+				box.innerHTML += 'body\n';
+			}
+			document.documentElement.onclick = function (){
+				box.innerHTML += 'html\n';
+			}
+			document.onclick = function (){
+				box.innerHTML += 'document\n';
+			}
+			window.onclick = function (){
+				box.innerHTML += 'window\n';
+			} */
+			
+			//事件捕获：有不太具体的节点更早的接收事件,而最具体的节点应该最后接收到事件.
+			var box = document.getElementById('box');
+			box.addEventListener('click',function (){
+				box.innerHTML += 'box\n';
+			},true);
+			document.body.addEventListener('click',function (){
+				box.innerHTML += 'body\n';
+			},true);
+			document.documentElement.addEventListener('click',function (){
+				box.innerHTML += 'html\n';
+			},true);
+			document.addEventListener('click',function (){
+				box.innerHTML += 'document\n';
+			},true);
+			window.addEventListener('click',function (){
+				box.innerHTML += 'window\n';
+			},true);
+			
+			box.addEventListener('click',function (){
+				box.innerHTML += 'box\n';
+			},false);
+			document.body.addEventListener('click',function (){
+				box.innerHTML += 'body\n';
+			},false);
+			document.documentElement.addEventListener('click',function (){
+				box.innerHTML += 'html\n';
+			},false);
+			document.addEventListener('click',function (){
+				box.innerHTML += 'document\n';
+			},false);
+			window.addEventListener('click',function (){
+				box.innerHTML += 'window\n';
+			},false);
+			
+			// 事件流: 事件捕获阶段,处于目标阶段，事件冒泡阶段
+		</script>
+	</body>
+</html>

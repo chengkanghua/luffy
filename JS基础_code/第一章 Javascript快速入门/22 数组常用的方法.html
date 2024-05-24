@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>数组常用的方法</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		/*
+		var arr = [1,2,3];
+		var a = arr.toString();
+		var b = arr.toLocaleString();
+		console.log(a);
+		console.log(b);
+		
+		var person1 = {
+			toLocaleString : function(){
+				return 'mjj';
+			},
+			toString: function(){
+				return '么吉吉';
+			}
+		}
+		var person2 = {
+			toLocaleString : function(){
+				return '隔壁老王';
+			},
+			toString: function(){
+				return '隔壁老李';
+			}
+		}
+		var people = [person1,person2];
+		console.log(people);
+		console.log(people.toString());
+		console.log(people.toLocaleString());
+		*/
+
+
+
+
+
+
+
+
+
+		// 分割字符串
+		var colors = ['red','blue','green'];
+		var a = colors.join('|');
+		console.log(a);
+
+		// 栈(lifo last - in- first - out)方法.  push() pop() 队列方法
+		// push() 往数组的最后一项添加内容
+		var newlength = colors.push('purple');
+		console.log(newlength);
+		console.log(colors);
+		// pop() 从数组末尾删除最后一项
+		var lastItem = colors.pop();
+		console.log(lastItem);
+		console.log(colors);
+
+		// 队列 fifo  先进先出 unshift() shift() 
+		newlength = colors.unshift('yellow');
+		console.log(newlength);
+		console.log(colors);
+		var firstItem = colors.shift();
+		console.log(firstItem);
+		console.log(colors);
+
+		var values = [0,3,2,16,15,10];
+		// 数组倒序
+		// values.reverse();
+		// console.log(values);
+
+		// sort() 排序 升序 或者降序
+
+		// values.sort();
+		// console.log(values); //[0, 10, 15, 16, 2, 3]
+
+		function compare1(a,b){
+			/*
+			// a位于b之前
+			if (a < b ) {
+				return -1;
+			}else if(a > b){
+				return 1;
+			}else{
+				return 0;
+			}
+			*/
+			return a - b;
+
+		}
+		function compare2(a,b){
+			
+			/*
+			// a位于b之前
+			if (a < b ) {
+				return 1;
+			}else if(a > b){
+				return -1;
+			}else{
+				return 0;
+			}
+			*/
+			return b - a;	
+		}
+		// values.sort(compare1); //升序
+		// console.log(values);
+		values.sort(compare2);
+		console.log(values);
+
+		// 操作方法  concat() slice()  splice()
+		// 1.concat()  数组合并
+		var colors = ['red','blue'];
+		// var newColors = colors.concat('green');
+	          // newColors = newColors.concat({name:'zhangsan'});
+		// console.log(newColors);
+
+		//2.slice() 将当前数组中的一个或者多个项创建一个新数组
+		var newcolors = colors.concat({name:"lisi"},['black','purple']);
+		console.log(newcolors); //5
+		// newcolors = newcolors.slice(1,2);
+		newcolors = newcolors.slice(-1,-2); //slice(3,4)
+		console.log(newcolors);
+
+		// 3.splice() 删除 插入 替换
+		// 3.1 删除
+		var names = ['张三','李四','mjj','alex'];
+		// names.splice(0,2);
+		// console.log(names);
+		// 3.2 插入
+		// names.splice(1,0,'熊大大','jack');
+		// console.log(names);
+		// 3.3 替换
+		names.splice(1,1,'xiongdada');
+		console.log(names);
+
+		// 4.位置方法  indexOf() lastIndexOf()
+		var names = ['张三','mjj','王五','mjj','赵六'];
+		// alert(names.indexOf('mjj')); //1
+		// alert(names.lastIndexOf('mjj')); //3
+		// alert(names.indexOf('mjj',2)); //3
+		// alert(names.lastIndexOf('mjj',2)); //1
+		// alert(names.lastIndexOf('mjjxxxx',2)); //如果查不到结果 返回-1
+
+		// 5.迭代方法
+		// 5.1 filter() 将数组的元素进行过滤
+		var numbers = [1,2,3,6,19,4,20];
+
+		var filterResult = numbers.filter(function(item,index,array){
+			console.log('item:'+ item);
+			console.log('index:'+ index);
+			console.log('array:'+ array);
+
+			return item > 10
+		});
+		console.log(filterResult);
+
+		// 5.2 map()方法
+		var mapresult = numbers.map(function(item,index,array){
+			return item * 2;
+		})
+		console.log(mapresult);
+		
+		for(var i = 0; i < mapresult.length; i ++){
+			// console.log(mapresult[i]);
+		}
+		// 5.3 forEach()
+		mapresult.forEach(function(item,index){
+			console.log(item);
+		})
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>15 事件流阶段</title>
+	</head>
+	<body>
+		<button id="btn">事件流</button>
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+			// e.eventPhase  0 表示事件没有发生  1 表示捕获阶段 2目标阶段  3冒泡阶段
+			
+			// 2 目标阶段
+			btn.onclick = function (e){
+				e = e || window.event;
+				// this.innerHTML = e.eventPhase + '阶段';
+				console.log(e.eventPhase);
+			}
+				
+			// 1 捕获阶段
+			document.body.addEventListener('click',function (e){
+				e = e || window.event;				
+				console.log(e.eventPhase);
+
+			},true);
+			// 3 冒泡阶段
+			document.body.addEventListener('click',function (e){
+				e = e || window.event;				
+				console.log(e.eventPhase);
+
+			},false);
+		</script>
+	</body>
+</html>

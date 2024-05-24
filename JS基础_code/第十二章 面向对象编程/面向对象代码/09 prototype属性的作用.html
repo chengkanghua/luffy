@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>09 prototype属性的作用</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// js继承机制:通过原型对象实现继承
+			// 原型对象的作用,就是定义所有实例对象共享的属性和方法
+			function Foo(){};
+			Foo.prototype.name = 'mjj';
+			var f1 = new Foo();
+			var f2 = new Foo();
+			console.log(f1.name);
+			console.log(f2.name);
+			Foo.prototype.name = 'alex';
+			console.log(f1.name);
+			console.log(f2.name);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>02 闭包的用途</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			// 1.通过闭包制作计数器
+			// 作用:读取函数内部的变量,这些变量始终在内存中,使用闭包小心内存的泄露
+			function a(){
+				var start = 0;
+				function b(){
+					return start++;
+				}
+				return b;
+			}
+			var inc = a();
+			console.log(inc()); //0
+			console.log(inc()); //1
+			console.log(inc()); //2
+			// 释放当前的变量
+			inc = null;
+			
+			// 2.闭包能够封装对象的私有属性和方法
+			function Person(name){
+				//私有的属性
+				var age;
+				//私有的方法
+				function setAge(n){
+					age = n;
+				}
+				function getAge(){
+					return age;
+				}
+				return {
+					name:name,
+					setAge:setAge,
+					getAge:getAge
+				}
+			}
+			var p1 = Person('mjj');
+			p1.setAge(18);
+			console.log(p1.getAge());//18
+			p1 = null;
+
+		</script>
+	</body>
+</html>

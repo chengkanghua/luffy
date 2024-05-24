@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07 节点方法</title>
+	<style type="text/css">
+		.active{
+			color: red;
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+
+		<p id="active">mjj</p>
+
+	</div>
+
+	<!-- 
+		动态的操作节点
+		1.创建节点  createElement()
+		2.插入节点 appendChild()
+				   insertBefore(newNode,node)
+	         3.删除节点 removeChild(childNode)
+	         4.替换节点 replaceChild(newNode,node)
+	         5.创建文本节点 createTextNode()
+	 -->
+	 <script type="text/javascript">
+	 	var oDiv = document.getElementById('box');
+	 	var oAtive = document.getElementById('active');
+
+	 	var newNode = document.createElement('p');
+	 	var newNode2 = document.createElement('p');
+	 	var newNode3 = document.createElement('a');
+
+	 	console.log(newNode === newNode2);
+
+	 	newNode.innerHTML = '<a href="#">alex@qq.com</a>';
+	 	newNode2.innerHTML = '<a href="#">mjj@qq.com</a>';
+	 	newNode3.setAttribute('href','http://www.baidu.com');
+	 	newNode3.innerHTML = '百度一下';
+
+	 	newNode.setAttribute('class', 'active');
+	 	oDiv.appendChild(newNode);
+	 	// 第一个参数是新插入的节点，第二个参数是参考的节点
+	 	oDiv.insertBefore(newNode2,oAtive);
+
+	 	
+
+	 	/*
+	 	var textNode = document.createTextNode('alex');
+	 	newNode.appendChild(textNode);
+	 	*/
+	 	// newNode = null;//释放对象 
+
+	 	// oDiv.removeChild(oAtive); 删除操作
+	 	oDiv.replaceChild(newNode3, oAtive)
+
+
+	 	// newNode.innerText = '<a href="#">alex@qq.com</a>';
+
+
+	 	
+	 </script>
+	
+</body>
+</html>

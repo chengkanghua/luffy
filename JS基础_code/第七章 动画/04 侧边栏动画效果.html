@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>04 侧边栏动画效果</title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: relative;
+				left: -200px;
+			}
+			#box span{
+				position: absolute;
+				width: 40px;
+				height: 60px;
+				color: #fff;
+				background-color: #000000;
+				right: -40px;
+				top: 50%;
+				margin-top: -30px;
+				line-height: 60px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<span>拉开</span>
+		</div>
+		<script type="text/javascript">
+			window.onload = function (){
+				var box = document.getElementById('box');
+				var timer = null;
+				box.onmouseover = function (){
+					// 先关闭定时器
+					clearInterval(timer);
+					timer = setInterval(function (){
+						if(box.offsetLeft === 0){
+							clearInterval(timer);
+							return;
+						}
+						box.style.left = box.offsetLeft + 5 + 'px';
+					},30)
+					
+				}
+				box.onmouseout = function (){
+					// 先关闭定时器
+					clearInterval(timer);
+					timer = setInterval(function (){
+						if(box.offsetLeft === -200){
+							clearInterval(timer);
+							return;
+						}
+						box.style.left = box.offsetLeft - 5 + 'px';
+					},30)
+					
+				}
+			}
+		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>41 深拷贝</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 深拷贝对目标对象的完全拷贝,不像浅拷贝那样只是复制了一层引用,就连值也复制过来
+			// 只要进行了深拷贝,它们老死不相往来,谁也不影响谁
+			var obj = {
+				name: '小马哥',
+				age: 20,
+				hobby: ['eat','songs'],
+				friend: {
+					name: 'alex',
+					age: 38,
+					hobby: '鸡汤',
+					friend: {
+						name: '阿黄',
+						age: 10,
+						hobby: 'play'
+					}
+				}
+			}
+			
+			function deepCopy(to,from){
+				// 遍历from对象的所有的属性,拷贝到to对象中
+				for(var key in from){
+					// 不遍历原型链上的属性
+					if(from.hasOwnProperty(key)){
+						/*如果值是对象并且有值，再遍历对象*/
+						if(from[key] && typeof from[key] === 'object'){
+							//区分是一般对象还是数组
+						  to[key] = from[key].constructor === Array ? [] : {};
+						  to[key] = deepCopy(to[key],from[key]);	  
+						}else{
+							// 如果不是,直接赋值
+							to[key] = from[key];
+						}
+					}
+				}
+				return to;
+			}
+			var newObj = deepCopy({},obj);
+			newObj.friend.name = '小红';
+			console.log(newObj);
+			console.log(obj);
+		</script>
+	</body>
+</html>

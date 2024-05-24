@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>object</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+		var name = '火腿肠';
+		function 老虎(){
+			alert(name);
+		}
+		function 企鹅(){
+			alert(name);
+		}
+		老虎();
+		*/
+		// 对象 (属性和方法)字面量创建  姓名,年龄,性别 ,爱好(动作)
+		var  person = {
+			name : 'mjj',
+			age: 18,
+			sex:'女',
+			fav: function(a){
+				alert('爱好姑娘');
+				return '姑娘' + a + '岁';
+			}
+		}
+		console.log(person);
+		console.log(person.name);
+		console.log(person.fav(18));
+
+
+
+var myCar = new Object();
+myCar.make = "Ford";
+myCar.model = "Mustang";
+myCar.year = 1969;
+myCar["make"] = "Ford";
+myCar["model"] = "Mustang";
+myCar["year"] = 1969;
+console.log(myCar.make)  //Ford
+console.log(myCar.noProperty) // undefined
+
+
+//--------------------------------------
+// 同时创建四个变量，用逗号分隔
+var myObj = new Object(),
+    str = "myString",
+    rand = Math.random(),
+    obj = new Object();
+
+myObj.type              = "Dot syntax";
+myObj["date created"]   = "String with space";
+myObj[str]              = "String value";
+myObj[rand]             = "Random Number";
+myObj[obj]              = "Object";
+myObj[""]               = "Even an empty string";
+
+//方括号中的所有键都将转换为字符串类型，因为 JavaScript 中的对象只能使用 String 类型作为键类型。
+console.log(myObj);
+/*
+{
+    "type": "Dot syntax",
+    "date created": "String with space",
+    "myString": "String value",
+    "0.9569899157074231": "Random Number",
+    "[object Object]": "Object",
+    "": "Even an empty string"
+}
+*/
+//使用 Object.create 方法
+//对象也可以用 Object.create() 方法创建。该方法非常有用，因为它允许你为创建的对象选择一个原型对象，而不用定义构造函数。
+
+// Animal properties and method encapsulation
+var Animal = {
+  type: "Invertebrates", // 属性默认值
+  displayType: function () {
+    // 用于显示 type 属性的方法
+    console.log(this.type);
+  },
+};
+
+// 创建一种新的动物——animal1
+var animal1 = Object.create(Animal);
+animal1.displayType(); // Output:Invertebrates
+
+// 创建一种新的动物——Fishes
+var fish = Object.create(Animal);
+fish.type = "Fishes";
+fish.displayType(); // Output:Fishes
+
+
+
+/*
+JavaScript 的设计是一个简单的基于对象的范式。一个对象就是一系列属性的集合，一个属性包含一个名和一个值。
+一个属性的值可以是函数，这种情况下属性也被称为方法。
+
+*/
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>07 原型对象</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 原型对象:Foo.prototype
+			// 实例对象: f1就是实例对象,每一个原型对象中都有一个__proto__,每个实例对象都有一个constructor属性,这个constructor通过继承关系继承来的,它指向了当前的构造函数Foo
+			// 构造函数:用来初始化新创建对象的函数,Foo是构造函数,自动给构造函数赋予一个属性prototype,该属性指向了实例对象的原型对象
+			function Foo(){};
+			Foo.prototype.showName = function(){
+				console.log('mjj');
+			};
+			var f1 = new Foo();
+			var f2 = new Foo();
+			console.log(f1.showName());
+			console.log(f2.showName());
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,85 @@
+事件
+	1.事件流
+		描述的是从页面接收事件的顺序
+	    IE事件流是事件冒泡流，Netscape的事件流是事件捕获流
+    2.事件流阶段
+		（1）事件捕获阶段 （2）处于目标阶段  (3)事件冒泡阶段
+		事件捕获阶段：从最不具体的节点（window/document）接收事件 往具体的节点进行传播
+		事件冒泡阶段：从具体的节点开始接收事件，逐级往上传递到最不具体的节点。
+	3.事件对象
+		3.1 e.eventPhase 描述事件发生的阶段
+		事件捕获阶段  1
+		处于目标阶段  2
+		事件冒泡阶段  3
+		3.2 事件目标
+			e.currentTarget === this
+			
+			e.target
+			e.srcElement
+			
+			//兼容性代码
+			var target = e.target || e.srcElement;
+			
+		3.3 事件代理 也叫事件委托
+		3.4 取消默认行为
+			e.preventDefault();
+			e.returnValue = false;
+			
+			return false;
+		3.5 事件冒泡
+			e.bubbles
+				blur  focus scroll三个事件返回值为false
+			e.stopPropagation(); //常用
+			e.stopImmediatePropagation();
+			e.cancelBubble = true; 
+			
+			var handler = function(e){
+				e = e || window.event;
+				if(e.stopPropagation){
+					e.stopPropagation();
+				}else{
+					e.cancelBubble = true; 
+				}
+			}
+
+	4.事件处理程序
+		1) HTML事件处理程序
+		2）DOM0级事件处理程序
+			btn.onclick = function(e){
+				e = e || window.event;
+			}
+			//有事件覆盖现象
+			btn.onclick = function(e){
+				e = e || window.event;
+			}
+		3) DOM2级事件处理程序
+			btn.addEventListener('click',function (){
+				
+			},false);
+			btn.addEventListener('click',function (){
+				
+			},false);
+			var handler = function(){
+				....
+			}
+			btn.addEventListener('click',handler,false);
+			btn.removeEventListener('click',handler)
+		4) IE事件处理程序
+			btn.attachEvent('onclick',function(){
+				//在ie中小心this 这个this指向了window
+			})
+			btn.detachEvent('onclick',function(){
+				
+			})
+			
+		处理this的指向问题，函数中的call(target);
+		
+	5. 事件对象中的属性 坐标位置
+		5.1 clientX/Y x/y
+			相对于当前的浏览器（有效的浏览器区域）的x轴和y轴的距离，与滚动条无关
+		5.2 screenX/Y
+			相对于显示器屏幕的x轴和y轴的距离
+		5.3 pageX/Y
+			相对于页面的x轴和y轴的距离，如果有滚动条，包含整个页面
+		5.4 offsetX/Y
+			相对于事件源x轴和y轴的距离

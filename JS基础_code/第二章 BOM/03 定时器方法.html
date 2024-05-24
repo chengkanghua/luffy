@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>setTimeout()| setInterval()</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+		// 延迟性的操作
+		window.setTimeout(function(){
+			console.log('mjj');
+		},0)
+		console.log('xiongdada');
+		var num = 0;
+		var timer = null;
+		timer = setInterval(function(){
+			num++;
+			if (num > 5) {
+				clearInterval(timer);
+				return;
+			}
+			console.log('num:'+ num);
+		},1000);
+
+		
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>12 声明注意事项</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 声明提升: 变量声明提升和函数声明提升  变量的声明优先于函数的声明.但是 函数的声明会覆盖未定义的同名的变量
+			// var a;
+			// function a(){};
+			// console.log(a);  //ƒ a(){}  覆盖了未定义的同名变量
+			
+			// var a;
+			// function a(){};
+			// a = 10;
+			// console.log(a); //10  //定义的变量提升优先与函数的声明
+			
+			
+			// 1.变量的重复声明是无用的,但是函数的重复声明会覆盖前面的声明(无论是变量还是函数声明)
+			// var a;
+			// var a;
+			// a = 1;
+			// a = 10;
+			// console.log(a);  //10
+			
+			
+			// 2.函数声明提升优先级高于变量的声明提升
+			var a;
+			function a(){
+				console.log('hello wolrd');
+			}
+			a();  //hello wolrd
+			
+			// 3.后面的函数声明会覆盖前面的函数声明
+			fn();   //fn2
+			function fn(){
+				console.log('fn');
+			}
+			function fn(){
+				console.log('fn2');
+			}
+			
+			// 总结: 应该避免在同一作用域中重复声明
+			
+		</script>
+	</body>
+</html>

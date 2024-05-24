@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>18 稳妥构造函数模式</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 稳妥模式:没有公共属性,并且它的方法也不引用this对象
+			// instancof prototype属性都不能适用
+			function Person(name){
+				var a = 10;
+				var o = new Object();
+				// name就属于私有属性 结合闭包
+				o.sayName = function(){
+					console.log(a);
+					console.log(name);
+				}
+				return o;
+			}
+			// p1对象叫稳妥对象
+			var p1 = Person('mjj');
+			var p2 = Person('mjj2');
+			p1.sayName();   // 10  mjj
+			console.log(p1.sayName === p2.sayName);   //false
+		</script>
+	</body>
+</html>

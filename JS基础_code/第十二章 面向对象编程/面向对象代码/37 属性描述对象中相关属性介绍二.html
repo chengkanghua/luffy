@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>37 属性描述对象中相关属性介绍二</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// enumrable 可遍历性
+			// 如果一旦enumrable设置false,通常以下三个操作不会取到该属性
+			// for...in
+			// Object.keys()
+			// JSON.stringify()
+			var obj = {};
+			Object.defineProperty(obj, 'foo', {
+				value: 123,
+				enumrable:false
+			})
+			console.log(obj.foo);  //123
+			
+			for(var key in obj){
+				console.log(key);
+			}
+			console.log(Object.keys(obj)); //[]
+			console.log(JSON.stringify(obj));//"{}"
+			
+			function A(){
+				this.name = 'mjj';
+			}
+			
+			function B(){
+				A.call(this);
+			}
+			var b = new B();
+			Object.defineProperty(b,'age',{
+				value: 18,
+				enumrable:false
+			})
+			console.log(b);  //B {name: 'mjj', age: 18}
+			
+			// 注意: for...in循环可以遍历继承来的属性
+			for(var key in b){
+				console.log(key);  //name
+			}
+			// 可以获取继承来的属性
+			console.log(Object.keys(b));  //['name']
+			// getOwnPropertyNames 可以获取继承和不可遍历的属性
+			console.log(Object.getOwnPropertyNames(b));  // (2) ['name', 'age']
+		</script>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>39 存取器</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// Object.defineProperty() get和set
+			/* var obj = Object.defineProperty({},'p',{
+				get:function(){
+					return 'getter';
+				},
+				set:function (value){
+					// console.log('setter:' + value);
+					return;
+				}
+			})
+			console.log(obj.p); //getter
+			obj.p = 123;
+			console.log(obj);  //{} */
+			
+			/* var obj = {
+				get p(){
+					return 'getter';
+				},
+				set p(value){
+					console.log('setter:' + value);
+				}
+			}
+			console.log(obj.p); //getter
+			obj.p = 123;  //setter:123 */
+			
+			
+			var obj = {
+				n: 5,
+				get a(){
+					return this.n++;    // return this.n++  先返回n的 再n加1   return ++this.n 就是先n加1 再返回 
+				},
+				set a(newValue){
+					if(newValue > this.n){
+						this.n = newValue;
+					}else{
+						throw new Error('新的值必须大于当前的值');
+					}
+				}
+			}
+			console.log(obj.a);  //5
+			console.log(obj.a);  //6
+			console.log(obj.n); //7
+			obj.a = 10;
+			console.log(obj.a);  //10
+
+			// obj.a = 3;
+
+			
+
+
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

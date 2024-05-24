@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// new命令的原理
+			// 1.创建一个空对象,作为将要返回的对象实例
+			// 2.将这个空的对象原型对象,指向了构造函数的prototype属性对象
+			// 3.将这个实例对象的值赋值给函数内部的this关键字
+			// 4.执行构造函数体内的代码
+			function Person(name){
+				this.name = name;
+			}
+			var p1 = new Person('mjj');
+			// console.log(Person.prototype);
+			console.log(p1.__proto__ === Person.prototype);   //true
+			console.log(Person.prototype);    //{}
+		</script>
+	</body>
+</html>

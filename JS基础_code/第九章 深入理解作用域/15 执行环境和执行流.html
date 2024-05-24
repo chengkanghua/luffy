@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>15 执行环境和执行流</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 执行环境也叫执行上下文,执行上文环境
+			// 每个执行环境都有一个与之关联的变量对象,环境中定义的函数和变量都保存在这个对象
+			var a = 1;
+			var b = 2;
+			function fn(x) {
+				// arguments
+				// this
+				var a = 10;
+				function bar(x) {
+					var a = 100;
+					b = x + a;
+					return b;
+				}
+				bar(20);
+				bar(200);
+			}
+			fn(0);
+		</script>
+	</body>
+</html>

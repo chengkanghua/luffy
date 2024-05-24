@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>06 使用构造函数创建对象的利与弊</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Person(name) {
+				this.name = name;
+				this.sayName = function() {
+					console.log(this.name);
+				}
+			}
+			var p1 = new Person('Tom');
+			var p2 = new Person('Jack');
+			console.log(p1,p2);
+			
+			
+		</script>
+	</body>
+</html>

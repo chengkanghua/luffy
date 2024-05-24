@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>class list</title>
+	<style type="text/css">
+		#box{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<h2>你要买什么课程？</h2>
+	<p title='请您选择购买的课程'>本课程是web全栈课程，期待你的购买！</p>
+	<ul id='classList'>
+		<li class='item'>JavaScript</li>
+		<li class='item'>css</li>
+		<li>DOM</li>
+	</ul>
+
+	<!-- 
+	 -->
+	 <script type="text/javascript">
+	 	var oP = document.getElementsByTagName('p')[0];
+	 	// 获取属性值 有一个必需的参数，这个节点对象的名字
+	 	var title = oP.getAttribute('title');
+	 	var className  = oP.getAttribute('class');
+	 	console.log(title);
+	 	console.log(className);
+
+	 	// 设置属性值  setAttribute(name,value)
+	 	oP.setAttribute('id', 'box');
+
+
+
+	 </script>
+</body>
+</html>

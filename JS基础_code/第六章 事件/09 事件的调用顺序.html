@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				width: 200px;
+				height: 200px;
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" onclick="this.innerHTML += 'html\n'"></div>
+		<script type="text/javascript">
+			// 总结:
+			// 1.相同点,如果同时出现HTML事件处理程序和DOM0级事件处理程序,DOM0级会覆盖HTML事件处理程序
+
+			// 2.不同点
+			/* 
+			 2.1 chrome,safari,FF浏览器以及IE11结果： DOM0级 DOM2级
+			 2.2 IE9、10结果为：DOM0级 DOM2级 IE 
+			 2.3 ie8结果： DOM0级 IE
+			 */
+			var box = document.getElementById('box');
+			// DOM0级事件处理程序
+			box.onclick = function() {
+				this.innerHTML += 'DOM0级\n';
+			}
+			//  DOM2级事件处理程序
+			if (box.addEventListener) {
+				box.addEventListener('click', function() {
+					this.innerHTML += 'DOM2级\n'
+				})
+			}
+			// IE事件处理程序
+			if (box.attachEvent) {
+				box.attachEvent('onclick', function() {
+					box.innerHTML += 'IE\n'
+				})
+			}
+		</script>
+	</body>
+</html>

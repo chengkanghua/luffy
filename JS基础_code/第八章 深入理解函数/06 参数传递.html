@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>06 参数传递</title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			
+			// 1.基本数据类型
+			// 在向参数传递基本数据类型的值时,被传递的值会被复制到一个局部变量
+			/* function add(num){
+				num = num + 10;
+				return num;
+			}
+			var count = 20;
+			var result = add(count);
+			console.log(result); //30
+			console.log(count);  //20 */
+			
+			// 2.引用数据类型
+			// 在向参数传递引用数据类型的值时，会把这个值在内存中的地址复制给局部变量
+			
+			/* function setName(obj){
+				obj.name = 'mjj';
+			}
+			var person = new Object();
+			setName(person);
+			console.log(person.name); //mjj */
+			
+			function setName(obj){
+				obj.name = 'mjj';
+				console.log(person.name); //mjj
+				obj = new Object();
+				obj.name = 'test';
+				console.log(obj.name);    //test
+				console.log(person.name); //mjj
+			}
+			var person = new Object();
+			setName(person);
+			
+			
+/*
+基本数据类型：string（字符串）、number（数字）、boolean（布尔）、null（空）、undefined（未定义）、symbol（符号）
+引用数据类型：object（对象，除了基本数据类型其他都是对象。数组是对象、函数是对象、正则表达式也是对象）
+
+*/
+		</script>
+		
+	</body>
+</html>

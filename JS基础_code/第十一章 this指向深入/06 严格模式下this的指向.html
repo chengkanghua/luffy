@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>06 严格模式下this的指向</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 1.严格模式下，独立调用的函数内部的this指向了undefined
+			function fn(){
+				'use strict';
+				console.log(this);
+			}
+			fn(); //undefined
+			
+			
+			// 2.严格模式下，函数apply()和call()内部的this始终是它们的第一个参数
+			var color = 'red';
+			function showColor(){
+				'use strict';
+				console.log(this);         //undefined
+				console.log(this.color);   //Cannot read properties of undefined (reading 'color')
+			}
+			
+			showColor.call(undefined);
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>窗口加载事件</title>
+	<script type="text/javascript">
+		/*
+		setTimeout(function(){
+			var oDiv = document.getElementById('box');
+			console.log(oDiv);
+			oDiv.onclick = function(){
+				this.innerHTML = 'alex';
+			}
+		}, 0)
+		*/
+		// 等待文档元素加载完成才会调用onload()
+		window.onload = function(){
+			var oDiv = document.getElementById('box');
+			console.log(oDiv);
+			oDiv.onclick = function(){
+				this.innerHTML = 'alex';
+			}
+		}
+		// window.onload = function(){
+		// 	console.log(11111);
+		// }
+
+	</script>
+</head>
+<body>
+	<div id="box">MJJ</div>
+	
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>20 组合模式</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 该模式是目前使用最广泛,认同度最高的一种创建自定义对象的模式
+			function Person(name,age){
+				// 定制当前对象自己的属性
+				this.name = name;
+				this.age = age;
+				this.friends = ['alex','阿黄'];
+			};
+			// 定制各个实例对象的共享属性
+			Person.prototype = {
+				// 改变原型对象的同时要改变该原型对象的constructor属性,让它指向了当前的构造函数Person
+				constructor:Person,
+				sayName:function(){
+					console.log(this.name);
+				}
+			}
+			var wo = new Person('wo',18);
+			var you = new Person('you',28);
+			console.log(wo,you);
+			wo.friends.push('小红');
+			console.log(wo.friends);
+			console.log(you.friends);
+			wo.sayName();
+			you.sayName();
+			
+		</script>
+	</body>
+</html>

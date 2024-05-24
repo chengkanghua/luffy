@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>05 DOM0级事件处理程序</title>
+		<style type="text/css">
+			#box{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			// 1.简单   2.具有跨浏览器的优势
+			var box = document.getElementById('box');
+			box.onclick = function (){
+				this.innerHTML += 1;
+			}
+			// 删除事件处理程序
+			box.onclick = null;
+		
+			// 缺点:不能给同一个元素来绑定相同的事件处理程序,如果绑定了,会有覆盖现象
+			box.onclick = function (){
+				this.innerHTML += 2;
+			}
+		</script>
+	</body>
+</html>

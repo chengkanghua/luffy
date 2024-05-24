@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Javascript常用内置对象</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 字面量创建一样
+		// var arr = [1,2,3];
+		// 内置对象 native object 对象 : 属性和方法
+		// document.write('呵呵呵');
+		// Array
+
+		// js提供构造函数
+		var colors = new Array();
+		var colors2 = [];
+		if (Array.isArray(colors)) {
+			// 对数组进行操作
+			colors[0] = 'red';
+			colors[1] = 'blue';
+			colors[2] = 'yellow';
+			var a = colors.toString();
+			console.log(a);
+			console.log(typeof a);
+
+			console.log(colors);
+			// console.log(colors[0]);
+			// console.log(colors.length);
+		}else{
+			// .....
+		}
+
+
+
+	</script>
+	
+</body>
+</html>

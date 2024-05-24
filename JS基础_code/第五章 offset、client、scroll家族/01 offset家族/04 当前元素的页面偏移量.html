@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>05 如何求出当前元素在页面的偏移量</title>
+		<style>
+			#grandfather{
+				border: 5px solid red;
+				padding: 30px;
+				position: absolute;
+			}
+			#father{
+				padding: 20px;
+				border: 1px solid #000;
+				position: relative;
+			}
+			#son{
+				width: 100px;
+				height: 100px;
+				margin: 10px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="grandfather">
+			<div id="father">
+				<div id="son"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var son = document.getElementById('son');
+			console.log(getElementLeft(son));
+			console.log(getElementTop(son));
+
+
+			function getElementLeft(obj) {
+				// 1.获取当前元素的左偏移量
+				var actualLeft = obj.offsetLeft;
+				// 2.求出定位父级
+				var parent = obj.offsetParent;
+				// 3.循环
+				while (parent != null) {
+					// 3.1 求出当前的左方偏移量
+					actualLeft = actualLeft + parent.clientLeft + parent.offsetLeft;
+					// 3.2 更新定位父级
+					parent = parent.offsetParent;
+
+				}
+				return actualLeft + 'px';
+			}
+
+			function getElementTop(obj) {
+				// 1.获取当前元素的左偏移量
+				var actualTop = obj.offsetTop;
+				// 2.求出定位父级
+				var parent = obj.offsetParent;
+				// 3.循环
+				while (parent != null) {
+					// 3.1 求出当前的左方偏移量
+					actualTop = actualTop + parent.clientTop + parent.offsetTop;
+					// 3.2 更新定位父级
+					parent = parent.offsetParent;
+
+				}
+				return actualTop + 'px';
+			}
+		</script>
+	</body>
+</html>

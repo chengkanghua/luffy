@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>25 组合继承</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Animal(name) {
+				this.name = name;
+				this.colors = ['red', 'green', 'blue'];
+			}
+			Animal.prototype.getName = function() {
+				return this.name;
+			}
+			function Dog(name) {
+				// 继承了Animal
+				// 让父类的实例属性继承下来,实例修改引用类型的值,另一个实例的引用类型的值不会发生变化
+				Animal.call(this, name);
+			}
+			// 重写原型对象:把父类的共享方法继承下来
+			Dog.prototype = new Animal();
+			Dog.prototype.constructor = Dog;
+			var d1 = new Dog('阿黄');
+			var d2 = new Dog('阿红');
+			
+			d1.colors.push('purple');
+			console.log(d1.colors);
+			console.log(d2.colors,d2.name);  //(3) ['red', 'green', 'blue'] '阿红'
+			
+			// 问题:无论在什么情况下,都会调用父类构造函数两次
+			// 1.一个是我们初始化子类的原型对象的时候
+			// 2.在子类构造函数内部调用父类的构造函数
+
+		</script>
+	</body>
+</html>

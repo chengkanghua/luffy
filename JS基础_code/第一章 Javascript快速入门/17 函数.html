@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 做饭
+
+
+		// 买菜
+		// 洗菜
+		// 切菜
+		// 炒菜
+		// 吃菜
+		// 洗碗
+		// 睡觉.....
+
+		// 买菜
+		// 洗菜
+		// 切菜
+		// 炒菜
+		// 吃菜
+		// 洗碗
+		// 睡觉.....
+
+		// 买菜
+		// 洗菜
+		// 切菜
+		// 炒菜
+		// 吃菜
+		// 洗碗
+		// 睡觉.....
+
+		// 买菜
+		// 洗菜
+		// 切菜
+		// 炒菜
+		// 吃菜
+		// 洗碗
+		// 睡觉.....
+
+
+		// 封装重复性代码
+		function 做饭(isBad,a,b,c) { //isBad 形式参数
+			alert(isBad);
+			if(isBad){
+				alert('点个外卖');
+			}else{
+				// 买菜
+				// 洗菜
+				// 切菜
+				// 炒菜
+				// 吃菜
+				alert('做饭了');	
+			}
+			
+		}
+		var bad = true; //刀坏了
+		// 做饭(bad);
+		// 洗碗
+		// 睡觉.....
+		做饭(bad);
+
+
+function myConcat(separator) {
+  let result = ""; // 初始化列表
+  // 迭代 arguments
+  for (let i = 1; i < arguments.length; i++) {
+    result += arguments[i] + separator;
+  }
+  return result;
+}
+
+result = myConcat("、", "红", "橙", "蓝")
+console.log(result);  //红、橙、蓝、
+console.log(typeof result);  //string
+
+/*
+匿名函数
+------------------------------------------
+const square = function (number) {
+  return number * number;
+};
+
+console.log(square(4)); // 16
+--------------------------------------------
+当一个函数是一个对象的属性时，称之为方法。
+
+
+将函数作为参数传递给另一个函数时，函数表达式很方便
+-------------------
+function map(f, a) {
+  const result = new Array(a.length);
+  for (let i = 0; i < a.length; i++) {
+    result[i] = f(a[i]);
+  }
+  return result;
+}
+
+const cube = function (x) {
+  return x * x * x;
+};
+
+const numbers = [0, 1, 2, 5, 10];
+console.log(map(cube, numbers)); // [0, 1, 8, 125, 1000]
+
+-----------------------
+
+调用自身的函数我们称之为递归函数
+
+嵌套函数和闭包
+----------------------------------
+function outside(x) {
+  function inside(y) {
+    return x + y;
+  }
+  return inside;
+}
+
+const fnInside = outside(3); // 可以这样想：给我一个可以将提供的值加上 3 的函数
+console.log(fnInside(5)); // 8
+console.log(outside(3)(5)); // 8
+-----------------------------------------
+
+闭包
+------------------
+// 外部函数定义了一个名为“name”的变量
+const pet = function (name) {
+  const getName = function () {
+    // 内部函数可以访问外部函数的“name”变量
+    return name;
+  };
+  return getName; // 返回内部函数，从而将其暴露给外部作用域
+};
+const myPet = pet("Vivie");
+
+console.log(myPet()); // "Vivie"
+------------------------------------------
+
+使用 arguments 对象
+函数的实际参数会被保存在一个类似数组的 arguments 对象中。
+---------------------------
+function myConcat(separator) {
+  let result = ""; // 初始化列表
+  // 迭代 arguments
+  for (let i = 1; i < arguments.length; i++) {
+    result += arguments[i] + separator;
+  }
+  return result;
+}
+
+result = myConcat("、", "红", "橙", "蓝")
+console.log(result);  //红、橙、蓝、
+console.log(typeof result);  //string
+
+---------------------------------
+
+剩余参数
+-----------------------------
+function multiply(multiplier, ...theArgs) {
+  return theArgs.map((x) => multiplier * x);
+}
+
+const arr = multiply(2, 1, 2, 3);
+console.log(arr); // [2, 4, 6]
+
+------------------------------------------
+箭头函数
+箭头函数表达式（也称胖箭头，以区分未来 JavaScript 中假设的 -> 语法）相比函数表达式具有较短的语法且没有它自己的 this、arguments、super 和 new.target。箭头函数总是匿名的。
+
+有两个因素会影响对箭头函数的引入：更简洁的函数和 this 的无绑定性。
+-------------------------------------------------
+const a = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
+
+const a2 = a.map(function (s) {
+  return s.length;
+});
+
+console.log(a2); // [8, 6, 7, 9]
+
+const a3 = a.map((s) => s.length);
+
+console.log(a3); // [8, 6, 7, 9]
+-------------------------------------------------
+
+*/
+
+	</script>
+	
+</body>
+</html>

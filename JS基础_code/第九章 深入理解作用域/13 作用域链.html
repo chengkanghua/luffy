@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>13 作用域链和自由变量</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var a = 1;
+			var b = 2;
+			// fn=>全局
+			function fn(x) {
+				var a = 10;
+				// bar => fn => 全局
+				function bar(x) {
+					// 自由变量:在当前作用域中存在但未在当前作用域中声明的变量
+					
+					// 一旦出现自由变量,就肯定会有作用域链,再根据作用域链查找机制,查找到对应的变量
+					// 查找机制:在当前作用域中发现没有该变量,然后沿着作用域链往上级查找,直到查到对应的变量为止,如果查找不到,直接报错
+					var a = 100;
+					b = x + a;
+					return b;
+				}
+				bar(20);
+				bar(200);
+			}
+			
+			var result = fn(0);
+			console.log(a,b); // 1 300
+			
+		</script>
+	</body>
+</html>

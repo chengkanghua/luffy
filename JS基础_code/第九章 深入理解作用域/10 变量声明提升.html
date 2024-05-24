@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>10 变量的声明提升</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 编译阶段  边解释边执行
+			// 预解释
+			// a = 2;
+			// var a;
+			// console.log(a); //2
+			var a;
+			console.log(a); //undefined
+			a = 2;
+			// 声明从他们在代码中出现的位置被移动到最上面,这个过程叫做变量提升,预解释
+			/* var a;
+			console.log(a); //undefined
+			a = 0;
+			function fn(){
+				var b;
+				console.log(b); //undefined
+				b = 1;
+				function test(){
+					var c;
+					console.log(c); //undefined
+					c = 2;
+				}
+				test();
+			}
+			fn(); */
+			
+			
+		</script>
+	</body>
+</html>

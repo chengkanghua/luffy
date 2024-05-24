@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>call和apply方法的应用</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 1.找出数组的最大元素 Math.max() apply(null,)
+			var max = Math.max(2,3,4,5,10);
+			var arr = [22222,1,10,30,88];
+			var arrMax = Math.max.apply(null,arr);  //非严格模式下 传入的null就是window对象
+			console.log(arrMax); //22222
+			
+			// 2.将类数组转换成真正的数组
+			function add(){
+				console.log(arguments);  //Arguments(3) [1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+				// arguments.push(5);
+				// apply() slice()
+				var arr = Array.prototype.slice.apply(arguments);
+				console.log(arr);  // (3) [1, 2, 3]
+			}
+			add(1,2,3);
+			
+			// 3.数组追加
+			var arr = [];
+			Array.prototype.push.apply(arr,[1,2,3,4]);
+			console.log(arr);  //(4) [1, 2, 3, 4]
+			Array.prototype.push.apply(arr,[8,9,0]);
+			console.log(arr);  //(7) [1, 2, 3, 4, 8, 9, 0]
+			
+			// 4.利用call和apply做继承
+			// 动物类
+			function Animal(name,age){
+				this.name = name;
+				this.age = age;
+				this.sayAge = function(){
+					console.log(this.age);
+				}
+			}
+			// Cat
+			function Cat(name,age){
+				// 继承了Animal
+				Animal.call(this,name,age);//把this指向了43的c实例对象
+			}
+			var c = new Cat('小花',20)
+			c.sayAge();  //20
+			console.log(c.name); //小花
+			
+			function Dog(){
+				Animal.apply(this,arguments)
+			}
+			var d = new Dog('阿黄',18);
+			console.log(d);  // Dog {name: '阿黄', age: 18, sayAge: ƒ}
+			
+			
+			// 5.使用log代理console.log()
+			function log(){
+				console.log.apply(console,arguments);
+			}
+			log(d);   // Dog {name: '阿黄', age: 18, sayAge: ƒ}
+			
+			
+/*
+Function 实例的 call() 方法会以给定的 this 值和逐个提供的参数调用该函数。
+
+
+Function 实例的 apply() 方法会以给定的 this 值和作为数组（或类数组对象）提供的 arguments 调用该函数。
+*/			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>35 Object.defineProperties()方法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var obj = Object.defineProperties({},{
+				p1:{
+					value:123,
+					enumerable:true
+				},
+				p2:{
+					value:"mjj",
+					enumerable:false
+				},
+				p3:{
+					get:function(){
+						return this.p1 + this.p2;
+					},
+					enumerable:true,
+					configurable:true
+				}
+			})
+			console.log(obj);      //{p1: 123, p2: 'mjj'}
+			console.log(obj.p1);   //123
+			
+			// 一旦定义了取值函数get,就不能同时定义value属性,否则会报错
+		/* 	var obj2 = Object.defineProperty({},'p',{
+				value:'123',
+				get:function(){
+					return 456;
+				}
+			})
+			console.log(obj2.p);   //nvalid property descriptor. Cannot both specify accessors and a value or writable attribute
+			 */
+			
+			// 一旦定义了取值函数get,就不能同时定义writable
+			var obj3 = Object.defineProperty({},'a',{
+				get:function(){
+					return 456;
+				}
+			})
+			console.log(obj3.a);  //456
+			var obj4 = Object.defineProperty({},'foo',{});
+			console.log(Object.getOwnPropertyDescriptor(obj4,'foo')); //{value: undefined, writable: false, enumerable: false, configurable: false}
+			for(var key in obj4){
+				console.log(obj4[key]);
+			}
+			
+		</script>
+	</body>
+</html>

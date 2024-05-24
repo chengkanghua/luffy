@@ -9,6 +9,8 @@ import Register from "../components/Register"
 import Course from "../components/Course"
 import Detail from "../components/Detail"
 import Cart from "../components/Cart"
+import Order from "../components/Order"
+
 export default new Router({
   mode:"history",
   routes: [
@@ -24,17 +26,17 @@ export default new Router({
     },
    {
       name:"Login",
-      path: "/login",
+      path: "/login/",
       component:Login,
     },
     {
       name:"Register",
-      path:"/register",
+      path:"/register/",
       component:Register,
     },
     {
       name: "Course",
-      path:"/course",
+      path:"/course/",
       component: Course,
     },
     {
@@ -42,12 +44,16 @@ export default new Router({
       path: '/course/detail/:id/',
       component: Detail,
     },
-     {
-        name: 'Cart',
-        path: '/cart',
-        component: Cart,
-      },
-
+    {
+      name: 'Cart',
+      path: '/cart/',
+      component: Cart,
+    },
+    {
+      name: 'Order',
+      path: '/order/',
+      component: Order,
+    },
 
 
   ],

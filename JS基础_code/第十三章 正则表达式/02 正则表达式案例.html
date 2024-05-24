@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>02 正则表达式案例</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 1.检查用户账号
+			// 验证规则: 由字母,数字,下划线 组成,以字母开头 4-16位
+			function checkUser(str) {
+				// 模式
+				var re = /^[a-zA-Z]\w{3,15}$/g;
+				if (re.test(str)) {
+					return '正确';
+				} else {
+					return '错误';
+				}
+			}
+			console.log(checkUser('h111'));
+			// 2.匹配手机号
+			// 验证规则:
+			// 11位,以1开头 3 5 7 8  
+			/* function checkMobild(str){
+				var re = /^1[3|5|7|8]\d{9}/g;
+				if(re.test(str)){
+					alert('正确');
+				}else{
+					alert('错误');
+				}
+			}
+			checkMobild('1467654321213'); */
+			// 3.匹配电话号码
+			// 验证规则: 区号 + 号码
+			// 01088888888 010-8888888 0536-7777777
+			function checkPhone(str) {
+				var re = /^0\d{2,3}-?\d{7,8}$/g;
+				if (re.test(str)) {
+					console.log('匹配正确');
+				} else {
+					console.log('匹配错误');
+
+				}
+			}
+			checkPhone('0536-7777777');
+			// 4.匹配身份证号
+			// 18位或者15位,15位全是数字 18位 前17都是数字,最后一位可能是数字或者字符x或X
+			function checkCard(card) {
+				var re = /^(\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/g;
+				if (re.test(card)) {
+					console.log('身份证输入合法');
+				} else {
+					console.log('身份证输入不合法');
+				}
+			}
+			checkCard('76499819909876543');
+			// 5.匹配邮箱
+			// 第一部分@第二部分.com|cn|net
+			function checkEmail(str){
+				var re = /^[a-zA-Z0-9-._]+[@][a-zA-Z0-9-._]+\.(com|cn|net)$/g;
+				if(re.test(str)){
+					console.log('输入邮箱格式正确');
+				}else{
+					console.log('输入邮箱格式错误');
+
+				}
+			}
+			checkEmail('1ehjdjh@qq.com');
+		</script>
+	</body>
+</html>

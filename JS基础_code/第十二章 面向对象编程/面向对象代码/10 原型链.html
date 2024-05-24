@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>10 原型链</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// js规定,所有的对象都有自己的原型对象
+			// 原型链:对象的原型=>原型的原型=>原型的原型的原型======>null
+			// 根据原型链查找,如果一层一层往上查找,所有对象的原型最终都可以寻找到Object.prototype,Object构造函数的prototype.
+			
+			// 所有的对象都继承了Object.prototype上的属性和方法
+			// toString()
+			
+			
+			// 读取属性和方法的规则:js引擎会先寻找对象本身的属性和方法,如果找不到.就到它的原型对象去找,如果还是找不到,就到原型的原型去找,如果直到最顶层的Object.prototype还是找不到,就会返回undefined
+			// 如果对象和它的原型,都定制了同名的属性,那么优先读取对象自身的属性,这也叫覆盖
+			
+			function Person(name){
+				this.name = name;
+				this.showName = function(){
+					console.log('小猿');
+				}
+			}
+			Person.prototype.showName = function(){
+				console.log(this.name);
+			}
+			Object.prototype.showAge = function(){
+				console.log('24');
+			}
+			
+			
+			var p1 = new Person('mjj');
+			var p2 = new Person('alex');
+			p1.showName();
+			p2.showName();
+			console.log(p1.age); 
+			p1.showAge();
+			var arr = [12,3,4];
+			arr.showAge()
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>15 构造函数模式</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 问题: 浪费了内存空间
+			function Person(name,age){
+				this.name = name;
+				this.age = age;
+				this.sayName = function(){
+					console.log(this.name);
+				}
+			}
+			var man = new Person('mjj',18);
+			var woman = new Person('alex',38);
+			// 具有相同的sayName方法在man和woman实例中占用了不同的内存空间
+			console.log(man.sayName === woman.sayName);  //false
+		</script>
+	</body>
+</html>

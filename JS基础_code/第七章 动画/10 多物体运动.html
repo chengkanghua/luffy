@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>10 多物体运动</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			div{
+				width: 300px;
+				height: 150px;
+				background-color: royalblue;
+				margin: 20px 0;
+				border: 4px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var allBoxs = document.getElementsByTagName('div');
+				for(var i = 0; i < allBoxs.length; i++){
+					allBoxs[i].onmouseover = function(){
+						startAnimation(this,600);
+					}
+					allBoxs[i].onmouseout = function(){
+						startAnimation(this,300);
+					}
+				}
+				var speed = 0;
+				function startAnimation(obj,endTarget){
+					// 针对于多物体运动,定时器的返回值要绑定当前的对象中.
+					clearInterval(obj.timer);
+					obj.timer = setInterval(function (){
+						// 1.求速度
+						speed = (endTarget - obj.offsetWidth) / 20;
+						speed = endTarget > obj.offsetWidth ? Math.ceil(speed) : Math.floor(speed);
+						
+						// 2.临界处理
+						if(endTarget === obj.offsetWidth){
+							clearInterval(obj.timer);
+							return;
+						}
+						// 3.运动起来
+						obj.style.width = obj.offsetWidth + speed + 'px';
+					},30);
+				}
+			}
+		</script>
+	</body>
+</html>

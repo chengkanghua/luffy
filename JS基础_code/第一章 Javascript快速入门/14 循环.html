@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>for循环</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 循环 来做1+2+3....+10000
+		// 1+2+3+....+10000
+		/*
+		for(初始化条件;结束条件;递增条件){
+			//run this code
+		}
+		*/
+		var i;
+		var sum = 0;
+		for(i = 1; i <= 10000;i++){
+			sum  = sum + i;
+			// sum = 1 ,i = 2
+			// sum = 3, i = 3
+			// sum = 6, i = 4
+		}
+		console.log(sum);
+		var shopping = ['香蕉','苹果','牛奶','红牛'];
+
+		var j;
+		for(j = 0; j < shopping.length; j ++){
+		// console.log(shopping[j]);
+			var htmlStr = '<h1>'+shopping[j]+'</h1>';
+			console.log(htmlStr);
+			document.write(htmlStr);
+		}
+		
+/*
+JavaScript 中提供了这些循环语句：
+
+for 语句
+do...while 语句
+while 语句
+label 语句
+break 语句
+continue 语句
+for...in 语句
+for...of 语句
+
+for ([initialExpression]; [condition]; [incrementExpression])
+  statement
+
+do
+  statement
+while (condition);
+
+while (condition)
+  statement
+
+
+label 语句
+label :
+   statement
+------------------------------
+var num = 0;
+outPoint: for (var i = 0; i < 10; i++) {
+  for (var j = 0; j < 10; j++) {
+    if (i == 5 && j == 5) {
+      break outPoint; // 在 i = 5，j = 5 时，跳出所有循环，
+      // 返回到整个 outPoint 下方，继续执行
+    }
+    num++;
+  }
+}
+
+alert(num); // 输出 55
+---------------------------------------
+
+break 语句
+使用 break 语句来终止循环，switch，或者是链接到 label 语句。
+
+当你使用不带 label 的 break 时，它会立即终止当前所在的 while，do-while，for，或者 switch 并把控制权交回这些结构后面的语句。
+当你使用带 label 的 break 时，它会终止指定的带标记（label）的语句。
+
+break 语句的语法看起来像这样：
+break [label];
+
+
+continue 语句
+continue 语句可以用来继续执行（跳过代码块的剩余部分并进入下一循环）一个 while、do-while、for，或者 label 语句。
+
+当你使用不带 label 的 continue 时，它终止当前 while，do-while，或者 for 语句到结尾的这次的循环并且继续执行下一次循环。
+当你使用带 label 的 continue 时，它会应用被 label 标识的循环语句。
+
+continue 语句的语法看起来像这样：
+continue [label];
+
+
+for...in 语句
+for...in 语句循环一个指定的变量来循环一个对象所有可枚举的属性。
+for (variable in object) {
+  statements
+}
+
+for...of 语句
+for...of 语句在可迭代对象（包括Array、Map、Set、arguments 等等）上创建了一个循环，对值的每一个独特属性调用一次迭代。
+
+for (variable of object) {
+  statement
+}
+这个例子展示了 for...of 和 for...in 两种循环语句之间的区别。 for...in 循环遍历的结果是数组元素的下标，而 for...of 遍历的结果是元素的值
+------------------------------------------------
+let arr = [3, 5, 7];
+arr.foo = "hello";
+
+for (let i in arr) {
+  console.log(i); // 输出 "0", "1", "2", "foo"
+}
+
+for (let i of arr) {
+  console.log(i); // 输出 "3", "5", "7"
+}
+
+// 注意 for...of 的输出没有出现 "hello"
+---------------------------------------------------
+
+*/		
+
+		
+		
+</script>
+
+</body>
+</html>

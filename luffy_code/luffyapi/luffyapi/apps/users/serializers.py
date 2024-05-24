@@ -96,3 +96,11 @@ class UserModelSerializer(serializers.ModelSerializer):
         user.token = jwt_encode_handler(payload)
 
         return user
+
+from order.models import Order
+class UserOrderModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ['id','order_number','order_status','pay_time','course_list']
+
+

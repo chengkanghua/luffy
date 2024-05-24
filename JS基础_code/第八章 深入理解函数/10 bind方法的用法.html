@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>10 bind方法的用法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// bind es5新增的方法,主要作用:将函数绑定到某个对象中,并且有返回值(一个函数)
+			/* function fn(y){
+				return this.x + y;
+			}
+			var obj = {
+				x: 1
+			}
+			var gn = fn.bind(obj);
+			// console.log(gn);
+			console.log(gn(3));  //4
+			 */
+			// 常见的函数式编程技术- 函数柯里化
+			
+			function getConfig(colors,size,otherOptions){
+				console.log(colors,size,otherOptions);
+			}
+			var defaultConfig = getConfig.bind(null,'#ff6700',1024*768);
+			defaultConfig('123');  // #ff6700 786432 123
+			defaultConfig('456');  // #ff6700 786432 456
+			// 函数 作用域  闭包 this  面向对象编程(封装 继承 多态)
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>01 scrollHeight和scrollWidth</title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				border: 1px solid #000000;
+				padding: 10px;
+				margin: 10px;
+				overflow: scroll;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+		</div>
+
+		<script type="text/javascript">
+			// 1.scrollHeight 表示元素的总高度,包含由于溢出而无法在网页上的不可见部分
+			// 2.scrollWidth 表示元素的总宽度,包含由于溢出而无法在网页上的不可见部分
+			
+			var box = document.getElementById('box');
+			// 1.无滚动条时候,scrollHeight跟clientHeight属性结果是相等的  (最新的浏览器测试的不一样)
+			// console.log(box.scrollHeight);   //120 scrollHeight = height+padding
+			// console.log(box.scrollWidth);    
+			
+			// 2.有滚动条的时候   （不同浏览器结果不一样）
+			console.log(box.scrollHeight,box.scrollWidth);
+
+		</script>
+	</body>
+</html>

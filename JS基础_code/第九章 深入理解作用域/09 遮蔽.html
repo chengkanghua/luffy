@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>09 遮蔽</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 作用域查找从运行时所处的最内部作用域开始,逐级向上进行,直到遇到第一个匹配的标识符为止
+			// 在多层的嵌套作用域可以定义同名的标识符,这叫做 "遮蔽效应"
+			var a = 0;
+			function test(){
+				var a = 1;
+				console.log(a);
+			}
+			test();
+		</script>
+	</body>
+</html>

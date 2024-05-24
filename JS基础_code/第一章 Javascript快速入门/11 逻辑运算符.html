@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>逻辑运算符</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var weather = 'sunny';
+		var temp = 32;
+		/*
+		if (weather === 'sunny') {
+
+			if (temp > 30) {
+				console.log('在家里吹空调,吃西瓜');
+			}else{
+				console.log('天气非常好,可以出去玩耍了');
+			}
+
+
+		}
+		// && 逻辑与 并且    || 逻辑或 或者   !true
+		*/
+		if (weather === 'sunny' && temp > 30) {
+			console.log('在家里吹空调,吃西瓜');
+		}else if(weather === 'sunny' && temp  <= 30){
+			console.log('天气非常棒,可以出去玩耍了')
+		}
+
+		// 数学考过80 或者英语考过85 才可以玩游戏
+		var mathScore = 77;
+		var enlishScore = 80;
+		if (mathScore >= 80 || enlishScore >= 85) {
+			console.log('可以玩游戏');
+
+		}else{
+			console.log('在家里写作业');
+		}
+
+		var isLogin = false;
+		alert(!isLogin);
+		if (!isLogin) {
+			console.log('用户已登录');
+		}
+
+
+/*
+
+运算符			
+逻辑与 (&&)	
+逻辑或 (||)	
+逻辑非 (!)
+
+*/
+
+	</script>
+</body>
+</html>

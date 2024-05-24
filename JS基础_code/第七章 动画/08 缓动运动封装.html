@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>04 基本的缓动运动效果</title>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    #box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        position: relative;
+        left: -200px;
+    }
+
+    #box span {
+        position: absolute;
+        width: 40px;
+        height: 60px;
+        color: #fff;
+        background-color: #000000;
+        right: -40px;
+        top: 50%;
+        margin-top: -30px;
+        line-height: 60px;
+        text-align: center;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <span>拉开</span>
+    </div>
+    <script type="text/javascript">
+    // 0  ~ 200
+    // 缓动动画公式:  加速度 = (结束值 - 起始值) / 缓动系数  加速度由慢到慢
+    window.onload = function() {
+        var box = document.getElementById('box');
+        var timer = null;
+        box.onmouseover = function() {
+            slowAnimation(this, 0);
+        }
+        box.onmouseout = function() {
+            slowAnimation(this, -200);
+        }
+
+        function slowAnimation(obj, end) {
+            clearInterval(timer);
+            timer = setInterval(function() {
+                speed = (end - box.offsetLeft) / 20;
+                // 如果速度大于0,证明物体往右走,速度小于0,证明物体往左走
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                // 处理边界问题
+                if (obj.offsetLeft === end) {
+                    clearInterval(timer);
+                    return;
+                }
+                obj.style.left = obj.offsetLeft + speed + 'px';
+            }, 30);
+        }
+    }
+    </script>
+</body>
+
+</html>

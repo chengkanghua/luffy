@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>05 显示绑定</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// call() apply() bind()把对象绑定到this上,叫做显示绑定
+			/* var a = 0;
+			function foo(){
+				console.log(this.a);
+			}
+			var obj = {
+				a: 2
+			}
+			foo();//0
+			foo.call(obj); //2
+			foo.apply(obj); //2
+		    var fn = foo.bind(obj)
+			fn();  //2 */
+			
+			// 硬绑定是显示绑定的一个变种,使得this不能再被改变
+			/* var a = 0;
+			function foo(){
+				console.log(this.a);
+			}
+			var obj = {
+				a: 2
+			}
+			var bar = function (){
+				foo.call(obj);
+			}
+			bar(); //2
+			setTimeout(bar,2000); //2
+			bar.call(window); */
+		
+		
+			// 数组的forEach(fn,对象) map() filter() some() every()
+			
+			var id = 'window';
+			// function fn(el){
+			// 	console.log(el,this.id);
+			// }
+			var obj = {
+				id: 'fn'
+			
+			}
+			var arr = [1,2,3];
+			// arr.forEach(fn);
+			arr.forEach(function(el,index){     // function(1,0)  this={id: 'fn'}
+				console.log(el,index,this);   
+			},obj);
+			
+			
+		</script>
+	</body>
+</html>

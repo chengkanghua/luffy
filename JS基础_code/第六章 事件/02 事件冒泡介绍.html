@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>02 事件冒泡介绍</title>
+		<style type="text/css">
+			#box{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			// 事件冒泡: 事件开始时由最具体的元素接收,然后逐级向上传播到较为不具体的节点(文档)
+			// 注意: ie9以上 
+			var box = document.getElementById('box');
+			box.onclick = function (){
+				box.innerHTML += 'div\n';
+			}
+			document.body.onclick = function (){
+				box.innerHTML += 'body\n';
+			}
+			document.documentElement.onclick = function (){
+				box.innerHTML += 'html\n';
+			}
+			document.onclick = function (){
+				box.innerHTML += 'document\n';
+			}
+			window.onclick = function (){
+				box.innerHTML += 'window\n';
+			}
+		</script>
+	</body>
+</html>

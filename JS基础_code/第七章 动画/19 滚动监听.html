@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> 19 滚动监听</title>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container {
+        width: 1190px;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .container div {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: #fff;
+        font-size: 30px;
+    }
+
+    .aside {
+        position: fixed;
+        width: 40px;
+        right: 20px;
+        top: 300px;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .aside li {
+        height: 50px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .aside li a {
+        color: peru;
+    }
+
+    .aside li.current {
+        background-color: coral;
+    }
+
+    .aside li.current a {
+        color: #fff;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="box">
+        <div class="current">爱逛好货</div>
+        <div>好店主播</div>
+        <div>品质特色</div>
+        <div>猜你喜欢</div>
+    </div>
+    <ul class="aside" id="aside">
+        <li class="current">
+            <a href="javascript:void(0)">爱逛好货</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">好店主播</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">品质特色</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">猜你喜欢</a>
+        </li>
+    </ul>
+    <script src="js/myAnimation2.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    window.onload = function() {
+        // 1.获取标签
+        var box = document.getElementById('box');
+        var allBoxs = box.children;
+        var aside = document.getElementById('aside');
+        var lis = aside.children;
+        var isClick = false; //默认没有被点击
+        // 2.上色
+        var colors = ['red', 'pink', 'purple', 'blue'];
+        for (var i = 0; i < allBoxs.length; i++) {
+            allBoxs[i].style.backgroundColor = colors[i];
+        }
+
+        // 3.监听侧边栏按钮的点击
+        for (var j = 0; j < lis.length; j++) {
+            lis[j].index = j;
+            lis[j].onclick = function() {
+                isClick = true;
+                for (var k = 0; k < lis.length; k++) {
+                    lis[k].className = '';
+                }
+                // 设置当前的类
+                this.className = 'current';
+                var _this = this;
+                // 页面动画起来
+                startAnimation(document.documentElement, {
+                    "scrollTop": this.index * (document.body.clientHeight)
+                }, function() {
+                    isClick = false;
+                    // 这是跳转的页面
+	                if (_this.index == lis.length - 1) {
+	                    alert(111);
+	                    window.open('https://www.baidu.com');
+	                }
+                })
+
+                
+                // document.documentElement.scrollTop = this.index * document.body.clientHeight;
+
+            }
+        }
+        // 4.监听页面滚动
+        window.onscroll = function() {
+            if (!isClick) {
+                // 4.1 获取页面滚动的高度
+                var docScrollTop = document.documentElement.scrollTop+20 || document.body.scrollTop+20;
+                console.log(docScrollTop);
+                for (var i = 0; i < lis.length; i++) {
+                    if (docScrollTop > allBoxs[i].offsetTop) {
+                        for (var j = 0; j < allBoxs.length; j++) {
+                            lis[j].className = '';
+                        }
+                        lis[i].className = 'current';
+                    }
+                }
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>
