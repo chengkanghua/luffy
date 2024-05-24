@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>15 构造函数模式</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 1.构造函数拓展模式
+			// 2.寄生构造函数模式
+			// 3.稳妥构造函数模式
+			function Person(name,age){
+				
+				this.name = name;
+				this.age = age;
+				this.sayName = sayName;
+			}
+			// 定义多个全局函数,严重污染全局空间
+			function sayName(){
+				console.log(this.name);
+			}
+			var man = new Person('mjj',18);
+			var woman = new Person('alex',38);
+			console.log(man.sayName === woman.sayName);  //true
+		</script>
+	</body>
+</html>

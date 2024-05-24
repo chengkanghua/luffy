@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>09 透明度动画</title>
+    <style type="text/css">
+    #box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        opacity: 0.3;
+        filter: alpha(opacity: 30);
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script type="text/javascript">
+    window.onload = function() {
+        // 1.获取需要的元素
+        var box = document.getElementById('box');
+        // 2.监听事件
+        box.onmouseover = function() {
+            opacityAnimation(this, 100);
+        }
+        box.onmouseout = function() {
+            opacityAnimation(this, 30);
+        }
+        var timer = null,
+            alpha = 30,
+            speed = 0;
+
+        function opacityAnimation(obj, endAlpha) {
+            clearInterval(timer);
+            timer = setInterval(function() {
+                // 求透明度变化的速度
+                speed = endAlpha > alpha ? 5 : -5;
+
+                // 边界的处理
+                if (alpha === endAlpha) {
+                    clearInterval(timer);
+                    return;
+                }
+                // 改变当前的alpha的值
+                alpha += speed;
+                // 修改值
+                obj.style.opacity = alpha / 100;
+                obj.style.filter = `alpha(opacity: ${alpha})`;
+
+            }, 30);
+        }
+    }
+    </script>
+</body>
+
+</html>

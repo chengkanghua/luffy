@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>比较运算符</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		// ===  等同于 和 !==
+		var a = 5;
+		var astr = '5';
+		var isequal1 = a === astr;
+		console.log(isequal1);
+
+
+		// == 等于  和!= 不等于
+		var isequal2 = a == astr;
+		console.log(isequal2);
+		console.log(4 <= 4);
+
+/*
+运算符								描述								返回 true 的示例
+等于 Equal (==)						如果两边操作数相等时返回 true。		3 == var1 "3" == var1 3 == '3'
+不等于 Not equal (!=)					如果两边操作数不相等时返回 true		var1 != 4 var2 != "3"
+全等 Strict equal (===)				两边操作数相等且类型相同时返回 true。	参见 Object.is and sameness in JS.	3 === var1
+不全等 Strict not equal (!==)			两边操作数不相等或类型不同时返回 true。	var1 !== "3" 3 !== '3'
+大于 Greater than (>)				左边的操作数大于右边的操作数返回 true	var2 > var1 "12" > 2
+大于等于 Greater than or equal (>=)	左边的操作数大于或等于右边的操作数返回 	true	var2 >= var1 var1 >= 3
+小于 Less than (<)					左边的操作数小于右边的操作数返回 true	var1 < var2 "2" < 12
+小于等于 Less than or equal (<=)		左边的操作数小于或等于右边的操作数返回 	true	var1 <= var2 var2 <= 5
+
+*/
+	</script>
+	
+</body>
+</html>

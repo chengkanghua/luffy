@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>03 闭包的注意点</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			// 1.使用闭包使得函数中的变量始终在内存中,内存消耗很大,所以不能滥用闭包.否则会造成页面的性能问题.在ie中可能导致内存泄露.
+			function a(){
+				var num = 10;
+				return function(){
+					return ++num;
+				}
+				
+			}
+			var inc = a();
+			console.log(inc()); //11
+			console.log(inc()); //12
+			// console.log(inc());
+			// console.log(a()()); //11
+			// console.log(a()()); //11
+			inc = null;
+			
+			// 
+			function Person(name){
+				//私有的属性
+				var age;
+				//私有的方法
+				function setAge(n){
+					age = n;
+					//不要乱修改私有的age属性
+				}
+				function getAge(){
+					return age;
+				}
+				return {
+					name:name,
+					setAge:setAge,
+					getAge:getAge
+				}
+			}
+			var p1 = Person('mjj');
+			p1.setAge(30);
+		
+			console.log(p1.getAge()); //30
+			
+			
+			// 每个父函数调用完成,都会形成新的闭包,父函数中的变量始终会在内存中,相当于缓存,小心内存的消耗问题
+			// 总结:
+			// 闭包需要三个条件
+			// 1.函数嵌套 2.访问所在的作用域 3.在所在作用域外被调用
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

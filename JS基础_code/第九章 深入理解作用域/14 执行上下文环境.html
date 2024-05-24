@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>14 执行的上下文环境</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var a = 1;
+			var b = 2;
+			function fn(x) {
+				var a = 10;
+				function bar(x) {
+					var a = 100;
+					b = x + a;
+					return b;
+				}
+				bar(20);
+				bar(200);
+			}
+			
+			var result = fn(0);
+			console.log(a,b);  // 1 300
+		</script>
+	</body>
+</html>

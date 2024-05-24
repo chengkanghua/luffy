@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>class list</title>
+</head>
+<body>
+	<h2>你要买什么课程？</h2>
+	<p title='请您选择购买的课程'>本课程是web全栈课程，期待你的购买！</p>
+	<ul id='classList'>
+		<li class='item'>JavaScript</li>
+		<li class='item'>css</li>
+		<li>DOM</li>
+	</ul>
+
+	<!-- 节点类型：
+		1.元素节点
+		2.属性节点
+		3.文本节点
+	 -->
+	 <script type="text/javascript">
+	 	// 1.document.getElementById() 单个对象
+	 	var eleNode = document.getElementById('classList');
+	 	console.log(eleNode);
+	 	console.log(typeof eleNode);
+	 	// 2.document.getElementsByTagName()  获取出来的是一个节点对象集合  有点像数组  push()
+	 	var olis = document.getElementsByTagName('li');
+	 	var oTitle = document.getElementsByTagName('h2');
+	 	console.log(oTitle[0]);
+	 	console.log(olis.length);
+	 	for(var i = 0; i < olis.length; i ++){
+	 		console.log(olis[i]);
+	 	}
+	 	console.log(typeof olis);
+	 	// 3.document.getElementsByClassName('item');获取出来的是一个节点对象集合  
+	 	var oItems = document.getElementsByClassName('item');
+	 	console.log(oItems);
+
+
+	 </script>
+</body>
+</html>

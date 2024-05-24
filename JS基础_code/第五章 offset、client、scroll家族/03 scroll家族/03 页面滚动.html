@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>03 页面滚动</title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				border: 1px solid #000000;
+				padding: 10px;
+				margin: 10px;
+				overflow: scroll;
+
+			}
+
+			#btn {
+				position: fixed;
+				top: 200px;
+				left: 30px;
+			}
+		</style>
+	</head>
+	<body style="height: 2000px;">
+		<div id="box">
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+		</div>
+		<button id="btn">回到顶部</button>
+		<script type="text/javascript">
+			window.onscroll = function() {
+				// console.log(document.documentElement.scrollTop);
+				// console.log(document.body.scrollTop);
+
+				// 兼容代码
+				var docScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				console.log(docScrollTop);
+				var btn = document.getElementById('btn');
+				btn.onclick = scrollTop;
+
+				function scrollTop() {
+					// 页面滚动到最顶部
+					if (docScrollTop) {
+						// document.documentElement.scrollTop = 0;
+						// document.body.scrollTop = 0;
+						// 简便写法
+						document.documentElement.scrollTop = document.body.scrollTop = 0;
+
+					}
+				}
+
+			}
+		</script>
+	</body>
+</html>

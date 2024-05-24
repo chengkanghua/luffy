@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>11 函数声明提升</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// foo();  //1
+			// function foo(){
+			// 	console.log(1);
+			// }
+			
+			// var foo;
+			// foo();  //foo is not a function
+			// foo = function(){
+			// 	console.log(1);
+			// }
+			
+			
+			var foo;
+			foo();  //foo is not a function
+			foo = function bar(){
+				console.log(1);
+			}
+			
+			
+		</script>
+	</body>
+</html>

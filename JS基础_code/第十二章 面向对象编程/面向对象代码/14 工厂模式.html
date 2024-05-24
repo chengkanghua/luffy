@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			// 能创建多个类似的对象
+			// 问题:没有解决对象识别的问题,使用构造函数模式解决
+			function createPerson(name,age){
+				var o = new Object();
+				o.name = name;
+				o.age = age;
+				o.sayName = function (){
+					console.log(this.name);
+				}
+				return o;
+			}
+			var p1 = createPerson('mjj',18);
+			var p2 = createPerson('alex',38);
+			p1.sayName();
+			console.log(p1 instanceof Object);
+			console.log(p2 instanceof Object);
+		</script>
+	</body>
+</html>

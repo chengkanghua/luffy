@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>递增和递减以及赋值运算符</title>
+</head>
+<body>
+<script type="text/javascript">
+	// ++
+	// --
+	var x = 3;
+	// x++;
+	x = x + 1;
+	// alert(x);
+	var a = 5;
+	var b = 6;
+	a = b;
+
+	var c = 10;
+	// c = c + 5;
+	c += 5;
+	c -= 2;
+	c *= 4;
+	c /= 3;
+	alert(c);
+
+/*
+名字				简写的运算符	含义
+赋值				x = y		x = y
+加法赋值			x += y		x = x + y
+减法赋值			x -= y		x = x - y
+乘法赋值			x *= y		x = x * y
+除法赋值			x /= y		x = x / y
+求余赋值			x %= y		x = x % y
+求幂赋值			x **= y		x = x ** y
+
+左移位赋值		x <<= y		x = x << y
+右移位赋值		x >>= y		x = x >> y
+无符号右移位赋值	x >>>= y	x = x >>> y
+按位与赋值		x &= y		x = x & y
+按位异或赋值		x ^= y		x = x ^ y
+按位或赋值		x |= y		x = x | y
+
+逻辑与赋值		x &&= f()	x && (x = f())
+逻辑或赋值		x ||= f()	x || (x = f())
+逻辑空赋值		x ??= f()	x ?? (x = f())
+
+解构赋值语法
+var foo = ["one", "two", "three"];
+
+// 不使用解构
+var one = foo[0];
+var two = foo[1];
+var three = foo[2];
+
+// 使用解构
+var [one, two, three] = foo;
+
+*/	
+	
+	
+</script>
+</body>
+</html>

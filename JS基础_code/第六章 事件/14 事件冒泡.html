@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>14 事件冒泡</title>
+	</head>
+	<body>
+		<button id="btn" style="height: 30px; width: 200px;">按钮</button>
+		<input type="text" id="test">
+		<script type="text/javascript">
+			// bubbles cancelBubble stopPropagation() stopImmediatePropagation()
+
+			// 1.bubbles 返回一个布尔值 表示当前事件是否会冒泡,只读
+			// 注意: 大部分事件都会冒泡,但是focus blur scroll事件不会冒泡
+			var btn = document.getElementById('btn');
+			var test = document.getElementById('test');
+			/* btn.onclick = function(e) {
+				e = e || window.event;
+				console.log(e.bubbles);
+			}
+			test.onfocus = function (e){
+				e = e || window.event;
+				console.log(e.bubbles);
+			} */
+
+			// 2.stopPropagation()表示取消事件的进一步冒泡 无返回值,但是无法阻止同一事件的其它监听函数被调用
+			// ie8浏览器不支持
+			/* btn.addEventListener('click',function(e){
+				e = e || window.event;
+				e.stopPropagation();
+				this.innerHTML = '修改了';
+			},false);
+			btn.addEventListener('click',function(e){
+				e = e || window.event;
+				this.style.backgroundColor = 'blue';
+			},false);
+			document.body.onclick = function (e){
+				e = e || window.event;
+				console.log('body');
+			} */
+
+			// 3.stopImmediatePropagation()既可以阻止冒泡,也可以阻止同一事件的其它监听函数被调用
+			/* btn.addEventListener('click', function(e) {
+				e = e || window.event;
+				e.stopImmediatePropagation();
+				this.innerHTML = '修改了';
+			}, false);
+			btn.addEventListener('click', function(e) {
+				e = e || window.event;
+				this.style.backgroundColor = 'blue';
+			}, false);
+			document.body.onclick = function(e) {
+				e = e || window.event;
+				console.log('body');
+			} */
+			
+			// 4.cancelBubble 属性用于阻止冒泡 可读写 默认值为false,当设置为true,cancelBubble可以取消事件冒泡
+			btn.onclick = function(e) {
+				e = e || window.event;
+				if(e.stopPropagation){
+					e.stopPropagation();
+				}else{
+					e.cancelBubble = true;
+				}
+				
+				this.innerHTML = '修改了';
+				
+			}
+			document.body.onclick = function(e) {
+				e = e || window.event;
+				console.log('body');
+			}
+			
+			
+			// 兼容stopPropagation() stopImmediatePropagation()ie8不支持
+			// e.cancelBubble = true;全浏览器都支持 不是标准写法
+			/* var handler = function (e){
+				e = e || window.event;
+				if(e.stopPropagation){
+					e.stopPropagation();
+				}else{
+					e.cancelBubble = ture;
+				}
+			} */
+		</script>
+	</body>
+</html>

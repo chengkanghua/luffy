@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#box{
+				/* position: fixed; */
+			}
+			#father{
+				position: fixed;
+			}
+			#grandFather{
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- offset demension  偏移量
+		 1.定位父级 offsetParent
+		 2.offsetLeft offsetTop
+		 3.offsetHeight offsetWeight 
+		 -->
+		<div id="grandFather">
+			<div id="father">
+				<div id="box"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			
+			// offsetParent定义:与当前元素最近的经过定位的父级元素
+			// 1.元素自身有fixed定位，offsetParent是null 
+			var box = document.getElementById('box');
+			console.log(box.offsetParent);
+			
+			// 2.元素自身无fixed定位，offsetParent是body
+			
+			// 3.元素自身无定位,父级元素存在定位,offsetParent 是以最近的经过定位的父级元素
+			
+			// 4. body元素的offsetParent是null
+			console.log(document.body.offsetParent);
+		</script>
+	</body>
+</html>

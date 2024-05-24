@@ -178,29 +178,21 @@ class CartAPIView(ViewSet):
                 except:
                     continue
                 expire_text = '永久有效'
-
                 try:
                     if expire_id > 0:
                         expire_obj = models.CourseExpire.objects.get(is_show=True, is_deleted=False, id=expire_id)
-
                         expire_text = expire_obj.expire_text
-
                 except models.CourseExpire.DoesNotExist:
-
                     return Response({'msg': '有效期不存在！'}, status=status.HTTP_400_BAD_REQUEST)
 
-
                 real_price = course_obj.real_price(expire_id)
-
                 data.append({
                     'id': course_obj.id,
                     'course_img': constants.SERVER_HOST + course_obj.course_img.url,
                     'name': course_obj.name,
-                    # 'origin_price': course_obj.price,
                     'real_price': course_obj.real_price(expire_id),
                     'expire_text': expire_text,
                     'discount_name':course_obj.discount_name,
-
                     'origin_price':course_obj.price,
 
                 })

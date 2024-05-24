@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>03 函数调用</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 函数调用4种方式: 函数调用模式,方法调用模式,构造调用模式,间接调用模式
+			
+			// 1.函数调用模式
+			/* function add(x,y){
+				// 'use strict';
+				// 在严格模式下,当前函数中this指向了undefined
+				console.log(this);//在非严格模式，window对象
+				return x + y;
+			}
+			
+			var sum = add(3,4);
+			console.log(sum); //7 */
+			
+			// 重写
+			/* function fn(){
+				this.a = 1;
+				console.log(this);  //Window
+			}
+			fn();
+			console.log(this);  //Window
+			this.a = 5;
+			console.log(this); //Window */
+			
+			// 注意:小心避免全局的属性重写带来的问题
+			// 方法调用模式
+			/* var obj = {
+				a:1,
+				// 这个fn称为obj对象的方法
+				fn:function(){
+					// console.log(this); //打印当前对象
+					// console.log('1');
+					this.fn2();
+				},
+				fn2:function(){
+					this.a = 2;
+				}
+			}
+			obj.fn();
+			// obj.fn2();
+			console.log(obj.a);  //2 */
+			
+			
+			// 3.构造函数调用模式
+			/* function fn(x,y){
+				this.a = x + y;
+			}
+			// this指向问题: 当做普通函数调用,this指向了window,当做构造函数调用,this指向当前的函数,当做对象的方法,这个this一般情况指向了当前的对象
+			var obj = new fn(2,3);
+			console.log(obj); //fn */
+			/* var obj = {a:5};
+			function fn(){
+				console.log(this); //fn 
+				this.a = 10;
+				return obj;
+			}
+			var a = new fn;//等价于var a = new fn();
+			console.log(a); //{a: 5} */
+			
+			// 间接调用模式call({},1,2,3)  apply({},[1,2,3])
+			var obj = {
+				a: 10
+			};
+			function sum(x,y){
+				console.log(this);     
+				return x + y + this.a;
+			}
+			// console.log(sum());  //NaN   函数内部打印this是 window对象
+			console.log(sum.call(obj,1,2));    //13   这种调用函数内部this打印的是对象 {a: 10}
+			console.log(sum.apply(obj,[1,2])); // 13  这种调用函数内部this打印的是对象 {a: 10}
+
+		</script>
+	</body>
+</html>

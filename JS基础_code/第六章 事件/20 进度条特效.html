@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>20 进度条特效</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			#progress {
+				width: 600px;
+				height: 35px;
+				line-height: 35px;
+				margin: 100px auto;
+				position: relative;
+			}
+
+			#progress_bar {
+				position: relative;
+				width: 500px;
+				height: 100%;
+				background-color: #CCCCCC;
+				border-radius: 8px;
+
+			}
+
+			#progress_bar_current {
+				width: 0;
+				height: 100%;
+				background-color: orange;
+				border-top-left-radius: 8px;
+				border-bottom-left-radius: 8px;
+			}
+
+			#bar {
+				position: absolute;
+				width: 25px;
+				height: 50px;
+				background-color: orange;
+				top: -5px;
+				left: 0;
+				border-radius: 8px;
+				cursor: pointer;
+			}
+
+			#progress_value {
+				position: absolute;
+				right: 30px;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="progress">
+			<div id="progress_bar">
+				<div id="progress_bar_current"></div>
+				<span id="bar"></span>
+			</div>
+			<div id="progress_value">0%</div>
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				// 1.需要的标签
+				var progress = document.getElementById('progress');
+				var progress_bar = progress.children[0];
+				var progress_value = progress.children[1];
+				var progress_bar_current = progress_bar.children[0];
+				var bar = progress_bar.children[1];
+				// 2.监听鼠标摁下
+				bar.onmousedown = function(e) {
+					e = e || window.event;
+					// 2.1 获取初始距离
+					var offsetLeft = progress.offsetLeft;
+
+					// 2.2 监听鼠标移动
+					document.onmousemove = function(e) {
+						e = e || window.event;
+						//2.3 获取移动的距离
+						var x = e.clientX - offsetLeft;
+
+						// 2.4 边界处理
+						if (x < 0) {
+							x = 0;
+						} else if (x >= progress_bar.offsetWidth - bar.offsetWidth) {
+							x = progress_bar.offsetWidth - bar.offsetWidth;
+						}
+
+						// 2.5 移动
+						bar.style.left = x + 'px';
+						progress_bar_current.style.width = x + 'px';
+						progress_value.innerHTML = parseInt((x / (progress_bar.offsetWidth - bar.offsetWidth)) * 100) + '%';
+					}
+
+					document.onmouseup = function() {
+						console.log('鼠标弹起了');
+						document.onmousemove = null;
+					}
+
+				}
+
+			}
+		</script>
+	</body>
+</html>

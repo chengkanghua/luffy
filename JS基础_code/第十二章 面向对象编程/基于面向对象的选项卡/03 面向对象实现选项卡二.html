@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>01 面向过程的选项卡</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			ul{
+				list-style: none;
+				overflow: hidden;
+				border: 1px solid #3081BF;
+				width: 300px;
+				height: 40px;
+				line-height: 40px;
+			}
+			a{
+				text-decoration: none;
+			}
+			body{
+				background-color: #BAA895;
+			}
+			#wrap{
+				width: 302px;
+				height: 402px;
+				margin: 100px auto;
+			}
+			#wrap ul li{
+				float: left;
+				width: 100px;
+				height: 100%;
+			}
+			#wrap ul li.active{
+				background-color: #3081BF;
+				font-weight: bold;
+			}
+			#wrap ul li a{
+				display: inline-block;
+				width: 100px;
+				height: 100%;
+				color: #262626;
+				font-size: 18px;
+				text-align: center;
+			}
+			div.content{
+				width: 300px;
+				height: 360px;
+				border: 1px solid #3081BF;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<ul>
+				<li class="active">
+					<a href="javascript:void(0);">推荐</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">小说</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">导航</a>
+				</li>
+			</ul>
+			<div class="content" style="display: block;">推荐</div>
+			<div class="content">小说</div>
+			<div class="content">导航</div>
+		</div>
+		<script src="js/TabSwitch.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 1.构造函数
+			// 2.属性属于实例的属性
+			// 3.添加到原型上prototype
+			// 对象:属性和方法
+			window.onload = function() {
+				var wrap = document.getElementById('wrap');
+				var tab = new TabSwitch(wrap);
+			}
+		</script>
+		<script type="text/javascript">
+		
+		</script>
+	</body>
+</html>

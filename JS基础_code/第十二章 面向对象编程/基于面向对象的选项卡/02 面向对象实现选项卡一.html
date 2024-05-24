@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>01 面向过程的选项卡</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			ul{
+				list-style: none;
+				overflow: hidden;
+				border: 1px solid #3081BF;
+				width: 300px;
+				height: 40px;
+				line-height: 40px;
+			}
+			a{
+				text-decoration: none;
+			}
+			body{
+				background-color: #BAA895;
+			}
+			#wrap{
+				width: 302px;
+				height: 402px;
+				margin: 100px auto;
+			}
+			#wrap ul li{
+				float: left;
+				width: 100px;
+				height: 100%;
+			}
+			#wrap ul li.active{
+				background-color: #3081BF;
+				font-weight: bold;
+			}
+			#wrap ul li a{
+				display: inline-block;
+				width: 100px;
+				height: 100%;
+				color: #262626;
+				font-size: 18px;
+				text-align: center;
+			}
+			div.content{
+				width: 300px;
+				height: 360px;
+				border: 1px solid #3081BF;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<ul>
+				<li class="active">
+					<a href="javascript:void(0);">推荐</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">小说</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">导航</a>
+				</li>
+			</ul>
+			<div class="content" style="display: block;">推荐</div>
+			<div class="content">小说</div>
+			<div class="content">导航</div>
+		</div>
+		<script type="text/javascript">
+			// 1.构造函数
+			// 2.属性属于实例的属性
+			// 3.添加到原型上prototype
+			// 对象:属性和方法
+			window.onload = function() {
+				// 1.获取需要的标签
+				var wrap = document.getElementById('wrap');
+				var tabLis = wrap.children[0].getElementsByTagName('li');
+				var contentDivs = wrap.getElementsByTagName('div');
+				// 2.绑定事件
+				for (var i = 0; i < tabLis.length; i++) {
+					// 绑定i的索引
+					tabLis[i].index = i;
+					tabLis[i].onclick = clickFun;
+				}
+
+				function clickFun() {
+					// 去掉所有
+					for (var j = 0; j < tabLis.length; j++) {
+						tabLis[j].className = '';
+						contentDivs[j].style.display = 'none';
+					}
+					// this
+					this.className = 'active';
+					contentDivs[this.index].style.display = 'block';
+
+				}
+
+
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>04 函数参数</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// arguments
+			// 函数不介意传递进来多少个参数,也不在乎传进来的参数是什么数据类型,甚至可以不传参数
+			// function add(x){
+			// 	return x + 1;
+			// }
+			// console.log(add(1));   //2
+			// console.log(add('1')); //11
+			// console.log(add());     //NaN
+			// console.log(add(1,2,3));//2
+			
+			// 同名形参
+			/* function add(x,x,x){
+				'use strict';
+				return x;
+			}
+			console.log(add(1,2,3));  //非严格模式 3  严格模式报错
+			 */
+			
+			// 参数个数
+			// 实参比形参个数少,剩下的形参都将设置为undefined
+			/* function add(x,y){
+				console.log(x,y);
+			}
+			add(1,2,3,4); // 1 2 
+			 */
+			// 实参比形参个数多,考虑arguments
+			function add(x,y){
+				console.log(arguments);
+				// arguments它不是真正的数组,它是类数组,它能通过[]来访问它的每一个元素
+				console.log(arguments[0],arguments[1],arguments[2]);
+				console.log('实参的个数：'+ arguments.length); //3
+				
+			}
+			add(1,2,3);
+			// 形参的个数
+			console.dir(add.length); //2 
+		</script>
+	</body>
+</html>

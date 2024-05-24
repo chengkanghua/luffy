@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>11 constructor</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			// 总结: 一旦我们修改构造函数的原型对象,为防止引用出现问题,同时也要修改原型对象的constructor属性
+			// constructor属性表示原型对象和构造函数之间的关联关系
+			function MyArray(){};
+			MyArray.prototype = Array.prototype;
+			// console.log(MyArray.prototype.constructor);
+			MyArray.prototype.constructor = MyArray;
+			var arr = new MyArray();
+			console.log(arr);
+			arr.push(1,2,3);
+			console.log(arr);
+			console.log(arr.constructor);
+			console.log(arr.__proto__ === MyArray.prototype);
+		</script>
+	</body>
+</html>

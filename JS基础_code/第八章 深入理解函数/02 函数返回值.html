@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>02 函数返回值</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// return 1; 应用在函数中
+
+	/* 		function fn() {
+				return {
+					name: "MJJ",
+					age: 18
+				};
+				alert(1);
+			}
+			// console.log(fn());//如果没有返回值，调用表达式的结果是undefined
+			console.log(fn());   //Object */
+			
+			// 并不是所有的函数中的return之后的代码都不执行
+			/* function testFinally(){
+				try{
+					// var a = 2;
+					// var b = 3;
+					// console.log(a+b);
+					console.log(x);   // x undefine
+					return 2;
+				}catch(e){
+					alert(e);
+					//TODO handle the exception
+					return 1;
+				}finally{
+					return 0;
+				}
+			}
+			console.log(testFinally()); */
+			
+			// 一个函数可以有多个return语句
+			/* function compare(x,y){
+				if(x > y){
+					return x - y;
+				}else{
+					return y - x;
+				}
+			} */
+			
+			// 如果函数调用时在前面加上new前缀,且返回值不是一个对象或者没有返回值,则返回该对象 (this)
+			/* function fn(){
+				console.log(this);  //fn
+				this.a = 2;
+				return 1;
+			}
+			var test = new fn();
+			console.log(test);  //fn */
+			
+			// 如果返回值是一个对象,则返回该对象
+		/* 	function fn(){
+				this.a = 2;
+				return {a:1};
+			}
+			var test = new fn();
+			console.log(test.constructor);   // Object() { [native code] } */
+			
+			function fn(){
+				console.log(2222);
+				return;
+				alert(1);  // return 之后 这里不执行
+			}
+			fn();
+			
+			
+		</script>
+	</body>
+</html>

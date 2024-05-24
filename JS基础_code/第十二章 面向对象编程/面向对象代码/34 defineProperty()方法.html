@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>34 defineProperty()方法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		
+			// Object.defineProperty(属性所在的对象,属性名,属性描述对象)
+			var obj = Object.defineProperty({},'name',{
+				value:'mjj',
+				writable:false, //可写性
+				enumrable: true, //可遍历
+				configurable: false //是否能被删除
+			})
+			console.log(obj.name);  //mjj
+			obj.name = 'alex';
+			console.log(obj.name);  //mjj
+			
+			for(var key in obj){
+				console.log(obj[key]);   //可遍历  不知为什么不能输出
+			}
+			
+			// delete obj.name;
+			console.log(obj);  //{name: 'mjj'}
+		</script>
+
+	</body>
+</html>

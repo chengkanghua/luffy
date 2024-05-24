@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>01 理解闭包</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 作用域:全局作用域和函数作用域
+			
+			// 闭包就是fn2,既能够读取其它函数内部变量的函数
+			// 定义在一个函数内部的函数
+			
+			// 闭包最大的特点:就是它可以记住诞生的环境,比如fn2记住了它诞生的环境是fn1,所以在fn2中可以得到fn1中的内部变量
+			var a = 123;
+			function fn1(){
+				console.log(a);
+				var b = 234;
+				function fn2(){
+					console.log(b);
+				}
+				return fn2;
+			}
+			var result = fn1();  //123
+			result();  //234
+		</script>
+	</body>
+</html>

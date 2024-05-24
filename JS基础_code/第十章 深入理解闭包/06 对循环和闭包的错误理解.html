@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>06 对循环和闭包的错误理解</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* function foo(){
+				var arr = [];
+				for(var i = 0; i < 10; i++){
+					arr[i] = function(){
+						return i;
+					}
+				}
+				return arr;
+			}
+			var bar = foo();
+			console.log(bar[0]());//10
+			console.log(bar[5]());//10 */
+			
+			// 解决方案:使用闭包解决循环中变量的问题,相当于把变量保存在内存中,,每次执行的时候从内存中获取
+			/* function foo(){
+				var arr = [];
+				for(var i = 0; i < 10; i++){
+					 arr[i] = (function(n){
+						return function(){
+							return n;
+						}
+					})(i); 
+					
+					
+					// (function(n){
+					// 	arr[n] = function(){
+					// 		return  n;
+					// 	}
+					// })(i);
+					
+				}
+				return arr;
+			}
+			var bar = foo();
+			console.log(bar);   //function
+			console.log(bar[0]());  //0
+			console.log(bar[1]());  //1
+			console.log(bar[2]());  //2
+			console.log(bar[3]());  //3
+			console.log(bar[4]());  //4 */
+			
+			// 2.解决方法 let块级作用域
+			// console.log(a);
+			// {
+			// 	let a = 0;
+			// }
+			function foo(){
+				var arr = [];
+				for(let i = 0; i < 10; i++){
+					arr[i] = function(){
+						return i;
+					}
+				}
+				return arr;
+			}
+			var bar = foo();
+			console.log(bar[0]()); //0
+			console.log(bar[1]()); //1
+			console.log(bar[2]()); //2
+			console.log(bar[3]()); //3
+			
+			//MJJ名言：在编程,如果实际和预期结果不符,就按照代码执行顺序一步一步地把执行环境图示画出来,会发现很多时候我们都是在想当然
+			
+/*
+var let  const的异同：
+
+var声明是全局作用域或函数作用域，而let和const是块作用域。
+var变量可以在其范围内更新和重新声明； let变量可以被更新但不能重新声明； const变量既不能更新也不能重新声明。
+它们都被提升到其作用域的顶端。但是，虽然使用变量undefined初始化了var变量，但未初始化let和const变量。
+尽管可以在不初始化的情况下声明var和let，但是在声明期间必须初始化const。
+
+*/
+			
+		</script>
+	</body>
+</html>

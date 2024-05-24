@@ -1,0 +1,22 @@
+<script type="text/javascript">
+	// 属性描述对象:一个对象内部的数据结构
+	var obj = {};
+	obj.name = 'mjj';
+	obj.name = 'alex';
+	// console.log(delete obj.name); //true
+	// console.log(obj.propertyIsEnumerable('name'));  //true
+	console.log(Object.getOwnPropertyDescriptor(obj,'name'));   //{value: 'alex', writable: true, enumerable: true, configurable: true}
+	console.log(obj.name);  //alex
+	
+	
+	// name: 
+	// {
+	// value: alex,
+	// writable:true,
+	// enumerable:true,
+	// configurable:true,
+	// set:undefined,
+	// get:undefined
+	// }
+	
+</script>

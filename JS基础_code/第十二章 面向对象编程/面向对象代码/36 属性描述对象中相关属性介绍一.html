@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// "use strict";
+			// value
+			var obj = {};
+			obj.p = 123;
+			console.log(Object.getOwnPropertyDescriptor(obj,'p').value);   //123
+			Object.defineProperty(obj,'p',{value: 456}); 
+			console.log(obj.p);  //456
+			
+			// writable
+			Object.defineProperty(obj,'p',{
+				value: 890,
+				writable:false
+			});
+			console.log(obj.p);  //890
+			obj.p = 100;
+			console.log(obj.p);  //890
+			
+			
+			var pro = Object.defineProperty({},'foo',{
+				value:'a',
+				writable:false
+			})
+			var obj2 = Object.create(pro);
+			Object.defineProperty(obj2,'foo',{
+				value:'b'
+			})
+			console.log(obj2.foo);  //b
+
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>onmouseover()和onmouseout()事件</title>
+	<style type="text/css">
+		#box{
+			width: 200px;
+			height: 200px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+	</div>
+	<script type="text/javascript">
+		// 1.找开关   2.摁一下   3.灯亮了
+		// 1.找到触发的事件对象    
+		var oDiv = document.getElementById('box');
+		// 2.鼠标滑过事件  
+		oDiv.onmouseover = function(){
+			console.log(111);
+			// 3.事件处理程序
+			this.style.backgroundColor = 'green';
+		}
+		// 2.鼠标移开事件  
+		oDiv.onmouseout = function(){
+			// 3.事件处理程序
+			this.style.backgroundColor = 'red';
+		}
+
+	</script>
+	
+</body>
+</html>

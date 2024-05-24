@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>03 执行阶段(了解)</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 简言之,编译过程就是编译器把程序分解成词法单元,将词法单元解析成AST,再把AST转换成机器指令等待执行得过程
+			
+			var a = 2;
+			console.log(a);
+			console.log(b);
+			// 执行阶段:
+			// 1.引擎运行代码时首先查找当前的作用域,看a变量是否在当前的作用域下,如果是,引擎就会直接使用这个变量;如果否,引擎会继续查找该变量
+			// 2.如果找到了变量,就会将2赋值给当前的变量,否则引擎就会抛出异常
+			
+		</script>
+	</body>
+</html>

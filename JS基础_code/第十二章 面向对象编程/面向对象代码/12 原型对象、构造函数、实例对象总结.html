@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>12 总结</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 构造函数:Foo
+			// 实例对象:f1
+			// 原型对象:Foo.prototype
+			function Foo(){};
+			var f1 = new Foo();
+			
+			// 1.原型对象和实例对象的关系
+			console.log(Foo.prototype === f1.__proto__);
+			// 2.原型对象和构造函数的关系
+			console.log(Foo.prototype.constructor === Foo);
+			
+			// 3. 实例对象和构造函数
+			// 间接关系是实例对象可以继承原型对象的constructor属性
+			console.log(f1.constructor === Foo);
+			Foo.prototype = {};
+			console.log(Foo.prototype === f1.__proto__);
+			console.log(Foo.prototype.constructor === Foo);
+			// 所以,代码的顺序很重要
+
+
+			
+			
+
+		</script>
+	</body>
+</html>

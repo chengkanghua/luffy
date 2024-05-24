@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>如何访问每个查询字符串参数</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// http://192.168.12.4:8080/04%20location%E5%AF%B9%E8%B1%A1.html?user=mjj&pwd=123
+		// ?user=mjj&pwd=123 
+		/*
+			var args = {
+				user:'mjj',
+				pwd:'123'
+			}
+		*/
+		function getQueryString(){
+			// 1.取得去掉问号查询字符串 user=mjj&pwd=123 
+			var qs = location.search.length > 0 ?  location.search.substring(1): '';
+			// 2.取得每一项 存放到数组中
+			var items = qs.length ?  qs.split('&'): []; //["name=mjj", "pwd=123"]
+			var item = null,name = null,value = null,args = {};
+			for(var i = 0; i < items.length; i ++){
+				item = items[i].split('='); //['name%20','mjj']
+				name = decodeURIComponent(item[0]);
+				value = decodeURIComponent(item[1]);
+				if (name.length) {
+					args[name]  = value;
+				}
+			}
+			return args;
+		}
+		var args  = getQueryString();
+		console.log(args.name);
+		console.log(args.pwd);
+
+
+
+	</script>
+</body>
+</html>

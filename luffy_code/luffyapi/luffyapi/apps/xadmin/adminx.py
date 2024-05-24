@@ -31,7 +31,7 @@ class LogAdmin(object):
 
 xadmin.site.register(Log, LogAdmin)
 
-import xadmin
+
 from xadmin import views
 
 class BaseSetting(object):
@@ -130,3 +130,34 @@ class CourseExpireModelAdmin(object):
     """商品有效期模型"""
     pass
 xadmin.site.register(CourseExpire, CourseExpireModelAdmin)
+
+from order.models import Order
+class OrderModelAdmin(object):
+    """订单模型管理类"""
+    pass
+xadmin.site.register(Order, OrderModelAdmin)
+
+
+from order.models import OrderDetail
+class OrderDetailModelAdmin(object):
+    """订单详情模型管理类"""
+    pass
+xadmin.site.register(OrderDetail, OrderDetailModelAdmin)
+
+
+from coupon.models import Coupon
+class CouponModelAdmin(object):
+    """优惠券模型管理类"""
+    list_display = ["name","coupon_type","timer"]
+xadmin.site.register(Coupon, CouponModelAdmin)
+
+
+from coupon.models import UserCoupon
+class UserCouponModelAdmin(object):
+    """我的优惠券模型管理类"""
+    list_display = ["id","user","coupon","start_time","is_use"]
+xadmin.site.register(UserCoupon, UserCouponModelAdmin)
+
+
+
+

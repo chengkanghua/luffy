@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>查找当前字符e在字符串中的所有位置</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 查找e 在str中的所有的位置
+		var str = 'He unfolded the map and set it on the floor.';
+		var arr = [];
+		var pos = str.indexOf('e'); //1
+		console.log(pos);
+		while(pos > -1){
+			// 找到当前e字符对应的位置
+			arr.push(pos);
+			pos = str.indexOf('e',pos+1);
+		}
+		console.log(arr);
+	</script>
+	
+</body>
+</html>

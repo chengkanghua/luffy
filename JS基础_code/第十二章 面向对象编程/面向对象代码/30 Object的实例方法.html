@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>30 Object的实例方法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 返回当前对象的值,默认情况返回对象本身
+			// Object 实例的 valueOf() 方法将 this 值转换成对象。
+			/* Object.prototype.valueOf()
+			var obj = new Object();
+			
+			// 用自定义的Object.valueOf 覆盖 Object.prototype.valueOf
+			// obj.valueOf = function(){
+			// 	return 2;
+			// }
+			console.log(obj.valueOf() === obj);  	//false
+			console.log(1 + obj);    //1[object Object] */
+			
+			// 返回一个对象的字符串形式,默认返回类型字符串
+			Object.prototype.toString()
+			var obj2 = {a: 1};
+			// obj2.toString = function(){
+			// 	return 'hello';
+			// }
+			// 如果没有定制toString方法得到如下结果
+			console.log(obj2.toString());  //"[object Object]"
+			// 自定义了toString()方法
+			// console.log(obj2.toString() + ' world');//"hello world"
+			 
+			var arr = [1,2,3];
+			console.log(arr.toString());    //1,2,3
+			console.log('123'.toString());  //123
+			
+			console.log((function(){
+				return 123
+			}).toString());  // function(){return 123}
+			console.log((new Date()).toString());       //Sat May 11 2024 19:43:02 GMT+0800 (中国标准时间)
+			// Object.prototype.toLocaleString()
+			console.log((new Date()).toLocaleString());  //2024/5/11 19:43:02
+			
+			// 用来判断该对象是否是另一个对象的原型
+			// Object.prototype.isPrototypeOf()
+			var o1 = {};
+			var o2 = Object.create(o1);
+			var o3 = Object.create(o2);
+			console.log(o2.isPrototypeOf(o3));  //true
+			console.log(o1.isPrototypeOf(o3));  //true
+			console.log(o3);   //{}
+			console.log(Object.prototype.isPrototypeOf({})); //true
+			console.log(Object.prototype.isPrototypeOf([])); //true
+			console.log(Object.prototype.isPrototypeOf(Object.create(null)));  //false
+			console.log(Object.prototype.__proto__);   //null
+			
+			// hasOwnProperty()接收一个字符串作为参数,返回一个布尔值,表示该实例对象自身是否具有该属性,继承来的属性返回为false
+			// Object.prototype.hasOwnProperty()
+			var obj = {
+				a: 123
+			}
+			// obj.toString()
+			console.log(obj.hasOwnProperty('a'));        //true
+			console.log(obj.hasOwnProperty('b'));        //false
+			console.log(obj.hasOwnProperty('toString')); //false
+			
+			
+			// 判断某个属性是否可以遍历,只能判断实例对象本身的属性,对于继承来的属性和设置不可枚举的属性一律返回false
+			// Object.prototype.propertyIsEnumerable()
+			// 可枚举:可以遍历的属性
+			
+			var obj = {};
+			obj.a = 123;
+			console.log("a是不是可遍历： " + obj.propertyIsEnumerable('a'));  //true
+			console.log(obj.propertyIsEnumerable('toString'));  //false
+			for(var key in obj){
+				console.log(obj[key]);  // 123
+			}
+			var arr = [1,2,3];
+			console.log(arr.propertyIsEnumerable('length'));  //false
+			
+			
+
+		</script>
+	</body>
+</html>

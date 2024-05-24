@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>29 Object对象本身的方法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 1.Object对象本身的方法
+			// 2.Object的实例方法
+			// Object.prototype.sayHello = function(){
+			// 	console.log('hello Object');
+			// }
+			// var obj = new Object();
+			// obj.sayHello();  //hello Object
+			
+			
+			// Object的静态方法
+			// 参数是一个对象,返回是一个数组
+			// Object.keys(对象)
+		/* 	var arr = ['a','b','c'];
+			console.log(Object.keys(arr));  //(3) ['0', '1', '2']
+			var obj = {
+				0: 'e',
+				1: 'f',
+				2 : 'j'
+			}
+			console.log(Object.keys(obj));  //(3) ['0', '1', '2']
+			 */
+			
+			// getOwnPropertyNames()返回不可枚举和枚举的属性名都能获取
+			// keys()返回可枚举的属性
+			// 接收一个对象作为参数,返回一个数组,包含了该对象自身的所有属性名
+			// Object.getOwnPropertyNames()
+			/* var arr = ['a','b','c'];
+			for(var key in arr){
+				console.log(key);  //0 1 2
+			}
+			console.log(Object.getOwnPropertyNames(arr).length); //4
+			
+			var obj = {
+				0: 'e',
+				1: 'f',
+				2 : 'j'
+			}
+			console.log(Object.getOwnPropertyNames(obj).length);  //3 */
+			
+			
+			/* // 参数是该对象，返回该对象的原型,也是获取原型对象的标准方法
+			// Object.getPrototypeOf()
+			function Fn(){};
+			var f1 = new Fn();
+			console.log(Object.getPrototypeOf(f1) === Fn.prototype);  //true
+			// 介绍几种特殊对象的原型
+			// 空对象的原型是Object.prototype
+			console.log(Object.getPrototypeOf({}) === Object.prototype);  //true
+			// Object.prototype 的原型是null
+			console.log(Object.getPrototypeOf(Object.prototype) === null);  //true
+			// 函数的原型是Function.prototype
+			function f(){};
+			console.log(Object.getPrototypeOf(f) === Function.prototype);  //true */
+		
+			// 接收两个参数,第一个参数是现有对象,第二个是原型对象
+			// Object.setPrototypeOf(obj, prototype)   obj是要设置其原型的对象
+			//Object.setPrototypeOf() 静态方法可以将一个指定对象的原型（即内部的 [[Prototype]] 属性）设置为另一个对象或者 null。
+			
+			/* var a = {};
+			var b = {x : 1};
+			Object.setPrototypeOf(a,b);
+			console.log(a.x);  //1
+			console.log(Object.getPrototypeOf(a));  //{x: 1} */
+			
+			function F(){
+				this.foo = 'foo';
+			}
+			// var f = new F();
+			
+			var f = Object.setPrototypeOf({},F.prototype);
+			F.call(f);
+			console.log(f);  //F {foo: 'foo'}
+			
+			// 一个实例对象生成另一个实例对象
+			// 接受一个对象作为参数,然后以它为原型,返回一个实例对象
+			// Object.create()
+			var  A = {
+				hello:function(){
+					console.log('hello');
+				}
+			}
+			var B = Object.create(A);
+			console.log(Object.getPrototypeOf(B)); //{hello: ƒ}
+			B.hello();    //hello
+			// 其它方法
+			
+		</script>
+	</body>
+</html>

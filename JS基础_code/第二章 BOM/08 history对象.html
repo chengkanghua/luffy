@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>history对象</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// console.log(history);
+		var count = 0;
+		setTimeout(function(){
+			count++;
+			// console.log(count);
+			history.go(-2);//刷新
+		},2000)
+	</script>
+</body>
+</html>

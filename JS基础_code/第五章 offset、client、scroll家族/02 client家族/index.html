@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			body{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width: 200px;
+				height: 200px;
+				border: 1px solid red;
+				padding: 20px;
+				/* display: none; */
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" ></div>
+		<script type="text/javascript">
+			// client 客户端大小 :指的是当前元素内容到内边距占据的空间大小
+			
+			// 不包含border
+			//1. clientWidth  = width + padding-left + padding-right
+			//2. clientHeight  = height + padding-top + padding-bottom
+			//3. clientLeft  左边框的大小
+			//4. clientTop   上边框的大小
+			
+			var box = document.getElementById('box');
+			console.log(box.clientWidth,box.clientHeight);  // 240 240
+			console.log(box.clientTop,box.clientLeft); 		//1 1 
+			
+			// 获取页面的大小
+			// console.log(document.documentElement.clientWidth);
+			// console.log(document.documentElement.clientHeight);
+			
+			// 注意
+			// 1.所有client属性都是只读的
+			// 静态失败
+			/* box.clientHeight = 10;
+			console.log(box.clientHeight); */
+			
+			// 2.如果给元素设置display:none; 客户端client属性都为0
+			
+			
+			// 3.尽量避免重复访问这些属性
+			console.time('time');
+			var b = box.clientHeight;
+			for(var i = 0; i < 100000; i++){
+				var a = b;
+			}
+			console.timeEnd('time');//time: 2.357177734375ms
+		</script>
+	</body>
+</html>

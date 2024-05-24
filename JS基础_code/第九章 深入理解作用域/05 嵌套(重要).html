@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			// ********作用域变量的查找机制(*******重要*******)
+			// 在当前作用域中无法找到某个变量时,引擎就会在外层嵌套的作用域中继续查找你,直到找到该变量,或者是抵达最外层的作用域(全局作用域)为止
+			function foo(a){
+				// console.log(a + b);
+				function fo(){
+					console.log(a + b);
+				}
+				fo();
+			}
+			var b = 2;
+			foo(4);
+		</script>
+	</body>
+</html>

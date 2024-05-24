@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>节点对象的其它常用属性</title>
+</head>
+<body>
+	<div class="previous">我是上个兄弟</div>
+	<div id="father">
+		<p>mjj</p>
+		<p>mjj2</p>
+	</div>
+	<div class="sibling">我是下个兄弟</div>
+
+	<script type="text/javascript">
+		var oFather = document.getElementById('father');
+		console.log(oFather.childNodes);
+		// console.log(oFather.childNodes[0]);
+		// console.log(oFather.firstChild);
+		// console.log(oFather.childNodes[oFather.childNodes.length - 1]);
+		// console.log(oFather.lastChild);
+		// console.log(oFather.parentNode.parentNode);
+		console.log(oFather.nextSibling);
+		// console.log(oFather.previousSibling);
+
+		function get_childNodes(fatherNode){
+			var nodes = fatherNode.childNodes;
+			var arr = [];//保存已经获取的元素节点对象
+			for(var i = 0; i < nodes.length; i++){
+				if (nodes[i].nodeType === 1) {
+					arr.push(nodes[i]);
+				}
+			}
+			return arr;
+
+		}
+		var childnodes = get_childNodes(oFather);
+		console.log(childnodes[0]);
+
+		function get_nextSibling(n){
+			var x = n.nextSibling;
+			while(x  && x.nodeType != 1){
+				x = x.nextSibling;
+			}
+			return x;
+		}
+		console.log(get_nextSibling(oFather));
+		
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>19 原型模式</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// prototype
+			
+			// 问题: 在于引用类型值属性会被所有的实例对象共享并且修改,很少适用原型模式的原因
+			function Person(){};
+			/* Person.prototype.name = 'mjj';
+			Person.prototype.age = 28;
+			Person.prototype.sayName = function(){
+				console.log(this.name);
+			} */
+			Person.prototype = {
+				constructor:Person,
+				name:'mjj',
+				age:28,
+				friends:['alex','阿黄'],
+				sayName:function(){
+					console.log(this.name);
+				}
+			}
+		
+			var me = new Person();
+			me.sayName();
+			var you = new Person();
+			you.sayName();
+			
+			me.friends.push('小红');
+			console.log(me.friends);
+			console.log(you.friends);
+		</script>
+	</body>
+</html>

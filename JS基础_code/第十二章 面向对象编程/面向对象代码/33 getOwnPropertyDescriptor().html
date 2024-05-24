@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>33 getOwnPropertyDescriptor方法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// getOwnPropertyDescriptor 可以获取属性描述对象.它的第一个是目标对象,第二个参数是一个字符串(目标对象的属性名)
+			var arr = [1,2,3];
+			arr.length = 5;
+			// console.log(arr.length);  //5
+			// console.log(delete arr.length);  //false
+			// console.log(arr['length']);//5
+			console.log(Object.getOwnPropertyDescriptor(arr,'0'));      //{value: 1, writable: true, enumerable: true, configurable: true}
+			console.log(Object.getOwnPropertyDescriptor(arr,'length'));  //{value: 5, writable: true, enumerable: false, configurable: false}
+			console.log(Object.getOwnPropertyDescriptor(arr,'toString'));//undefined 不能用于继承的属性 只能用于对象自身的属性
+			
+		</script>
+	</body>
+</html>

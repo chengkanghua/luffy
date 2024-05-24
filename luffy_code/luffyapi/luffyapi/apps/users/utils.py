@@ -1,3 +1,4 @@
+from luffyapi.settings import constants
 def jwt_response_payload_handler(token, user=None, request=None):
     """
     自定义jwt认证成功返回数据
@@ -5,7 +6,9 @@ def jwt_response_payload_handler(token, user=None, request=None):
     return {
         'token': token,
         'id': user.id,
-        'username': user.username
+        'username': user.username,
+        'credit': user.credit,
+        'credit_to_money': constants.CREDIT_MONEY,
     }
 
 
@@ -26,8 +29,6 @@ def get_user_by_account(account):
 from . import models
 from django.db.models import Q
 from django.contrib.auth.backends import ModelBackend
-
-
 class UsernameMobileAuthBackend(ModelBackend):
     """
     自定义用户名或手机号认证
@@ -41,14 +42,13 @@ class UsernameMobileAuthBackend(ModelBackend):
             return user
 
 
+
 from ronglian_sms_sdk import SmsSDK
 from django.conf import settings
 import json
 accId = settings.SMS['accId']
 accToken = settings.SMS['accToken']
 appId = settings.SMS['appId']
-
-
 def send_message(tid,mobile,datas):
     sdk = SmsSDK(accId, accToken, appId)
     # tid = '1'

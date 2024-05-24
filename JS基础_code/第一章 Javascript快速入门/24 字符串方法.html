@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串的常用方法</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 属性
+			// length
+		// 方法
+		/*
+			charAt()
+			charCodeAt()
+			concat()
+
+			slice()
+			substring()
+			substr()
+			
+
+			indexOf()
+			lastIndexOf()
+			trim()
+			
+			//常用
+			toLowerCase()
+			toUpperCase()
+
+			toLocaleLowerCase()
+			toLocaleUpperCase()
+		*/
+		// var str = 'hello world'; //切片
+
+		/*
+		console.log(str.length);//获取字符串的长度  11
+		console.log(str.charAt(1)); //e  获取指定的字符
+		console.log(str.charCodeAt(1)) //101 获取指定的字符对应的编码
+		console.log(str.concat(' mjj',' jack')); //拼接字符串  通常情况 不适用它来做拼接,使用 +来做多个字符的拼接
+
+		console.log(str.slice(2));
+		console.log(str.substring(2));
+		console.log(str.substr(2));
+		// 第一个参数是起始的位置,第二个参数是结束的位置 顾头不顾尾
+		console.log(str.slice(2,4));
+		console.log(str.substring(2,4));
+		// 第二个参数是返回的字符数
+		console.log(str.substr(2,6));
+		console.log(str.slice(-3,-1)); //rld slice(8,10)
+		console.log(str.slice(8,10)); 
+		*/
+		var str = 'hello world';
+		console.log(str.indexOf('o')); //4
+		console.log(str.lastIndexOf('o')); //7
+		console.log(str.indexOf('o',6)); //7
+		console.log(str.lastIndexOf('o',6)); //4
+
+		// trim()清除当前 字符串的前后后格
+		var str = '       hello world       ';
+		console.log(str.trim());
+		console.log(str);
+		var str = 'Hello Mjj';
+		// console.log(str.toUpperCase());
+		console.log(str.toLowerCase());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+	
+</body>
+</html>

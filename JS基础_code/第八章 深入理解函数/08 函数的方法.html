@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>08 函数的方法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// function fn(){};
+			// var obj = new fn();
+			// fn.prototype.a = 1;
+			// console.log(obj);  // fn {}  a: 1  每个函数都包含prototype原型对象 得到继承的属性
+			
+			// apply() call()
+			// call({},1,2,3)
+			// apply({},[])
+			// 每个函数都包含两个非继承而来的方法
+
+			/* window.color = 'red';
+			var obj = {color:'blue'};
+				
+			function sayColor(){
+				console.log(this.color);
+			}
+			sayColor();//red 因为当前的this指向了window
+			sayColor.call(this);//red
+			sayColor.call(window);//red
+			sayColor.call(obj);//blue */
+
+
+			// 在非严格模式下,如果我们使用call()或者是apply()方法,传入一个null或者undefined会被转换成一个全局window对象
+
+			// 在严格模式下,函数的指向始终是指定的值   call传什么值就是什么值
+			
+			var color = 'red';
+			function displayColor() {
+				'use strict';
+				console.log(this);
+				console.log(this.color);
+			}
+			displayColor.call(null);
+		</script>
+	</body>
+</html>

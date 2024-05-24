@@ -1,0 +1,59 @@
+<!-- 变量类型
+基本的数据类型
+ Number String  Boolean undefined null
+引用的数据类型
+Object Array Function -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	// number数值类型
+	var a = 3;
+	var b = 1.234;
+	var c = -1;
+	// typeof 来检查当前变量的数据类型
+	// alert(typeof a);
+	// alert(typeof b);
+	// alert(typeof c);
+	// 字符串 string    'abc234' 或者是 "我是mjj"
+	var name = 'mjj';
+	var en = "abc";
+	// alert(typeof name);
+	// alert(typeof en);
+	// boolean   0（假 false） 和1（真 true）
+	var c = 3 <= 4;
+	// alert(c);
+	// alert(typeof c);
+
+	// 声明变量
+	var x;
+	// alert(x);
+	// alert(typeof x);
+	// 空对象
+	var y = null;
+	alert(y);
+	alert(typeof y);
+
+/*
+最新的 ECMAScript 标准定义了 8 种数据类型：
+
+七种基本数据类型：
+	布尔值（Boolean），有 2 个值分别是：true 和 false。
+	null，一个表明 null 值的特殊关键字。JavaScript 是大小写敏感的，因此 null 与 Null、NULL或变体完全不同。
+	undefined，和 null 一样是一个特殊的关键字，undefined 表示变量未赋值时的属性。
+	数字（Number），整数或浮点数，例如： 42 或者 3.14159。
+	任意精度的整数（BigInt），可以安全地存储和操作大整数，甚至可以超过数字的安全整数限制。
+	字符串（String），字符串是一串表示文本值的字符序列，例如："Howdy"。
+	代表（Symbol，在 ECMAScript 6 中新添加的类型）。一种实例是唯一且不可改变的数据类型。
+
+对象（Object）。
+
+对象和函数是这门语言的另外两个基本元素。你可以把对象当作存放值的一个命名容器，然后将函数当作你的程序能够执行的步骤。
+*/
+
+</script>
+</body>
+</html>

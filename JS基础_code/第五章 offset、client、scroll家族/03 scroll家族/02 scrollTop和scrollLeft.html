@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>02 scrollTop和scrollLeft</title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				border: 1px solid #000000;
+				padding: 10px;
+				margin: 10px;
+				overflow: scroll;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+			<p>内容</p>
+		</div>
+		<button id="btn1">向下滚动</button>
+		<script type="text/javascript">
+			var box = document.getElementById('box');
+			var btn1 = document.getElementById('btn1');
+			// 1.scrollTop  元素被卷起的高度  #滚动条距离上面的高度
+			console.log(box.scrollTop);  //0
+			
+			/* box.onscroll = function(){
+				console.log(box.scrollTop,box.scrollHeight);
+				// 当滚动条滚动到内容底部时,符合以下公式
+				// scrollHeight = clientHeight + scrollTop;
+			}
+			 */
+			
+			// scrollTop是可读写的
+			box.scrollTop = 20;
+			console.log(box.scrollTop);
+			btn1.onclick  = function (){
+				box.scrollTop += 10;  //滚动条滚动的距离
+			}
+		</script>
+	</body>
+</html>

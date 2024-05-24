@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>05 函数重载</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 重载 :定义相同的函数名,传入的不同参数,实现不同的功能
+			// 在js中函数不存在重载现象
+			/* function add(a){
+				return a + 100;
+			}
+			function add(a,b){
+				return a + b + 100;
+			}
+			alert(add(10)); //Nan 
+			alert(add(10,20)); */
+
+			function doAdd() {
+				/* if(arguments.length == 0){
+					return 100;
+				}else if(arguments.length == 1){
+					return arguments[0] + 100;
+				}else if(arguments.length == 2){
+					return arguments[0] + arguments[1] + 100;
+				} */
+				switch (arguments.length) {
+					case 0:
+						return 100;
+						break;
+					case 1:
+						return arguments[0] + 100;;
+						break;
+					case 2:
+						return arguments[0] + arguments[1] + 100;;
+						break;
+					default:
+						break;
+				}
+			}
+			alert(doAdd());   		//100	
+			alert(doAdd(10)); 		//110
+			alert(doAdd(10, 20));   //130
+		</script>
+
+	</body>
+</html>

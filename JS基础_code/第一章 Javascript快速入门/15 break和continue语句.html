@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>break和continue</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// break 可以跳出当前循环
+		var x = 0;
+		for(;;){ //死循环
+			if(x > 100){
+				break;
+			}
+			x++;
+		}
+		console.log(x);
+
+		// 1+2+3+4+5+6+7+9+10
+		var sum  = 0;
+		for(var i = 1; i <= 10; i++){
+			if(i === 8){
+				// break;
+				// 跳出当前循环,下次循环继续进行
+				continue;
+			}
+			sum = sum + i;
+		}
+		alert(sum);
+	</script>
+</body>
+</html>

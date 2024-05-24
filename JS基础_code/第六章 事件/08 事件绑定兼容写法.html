@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>08 事件绑定兼容写法</title>
+	</head>
+	<body>
+		<button id="btn">你过来呀！</button>
+		<script type="text/javascript">
+			// DOM2级事件处理程序 addEventListener() IE8不支持,ie attachEvent()
+			
+			// attachEvent()内部的this指向了window,我们要对this的指向也做兼容
+			var btn = document.getElementById('btn');
+			// btn.addEventListener('click',fn,false);
+			// btn.attachEvent('onclick',fn)
+			addEvent(btn,'click',function(){
+				console.log(this.innerHTML)
+			})
+			
+			// 全浏览器 事件处理程序的兼容性代码
+			function addEvent(target,eventType,handler){
+				if(target.addEventListener){
+					// chrome  ff safari
+					target.addEventListener(eventType,handler,false);
+				}else{
+					target.attachEvent('on' + eventType,function (){
+						handler.call(target);
+					});
+				}
+				
+			} 
+			
+		</script>
+	</body>
+</html>

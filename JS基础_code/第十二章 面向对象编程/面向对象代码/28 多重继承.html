@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>28 多重继承</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 多重继承:一个对象同时继承多个对象
+	// Person  Parent  Me
+	function Person(){
+		this.name = 'Person';
+	}
+	Person.prototype.sayName = function(){
+		console.log(this.name);
+	}
+	// 定制Parent
+	function Parent(){
+		this.age = 30;
+	}
+	Parent.prototype.sayAge = function(){
+		console.log(this.age);
+	}
+	
+	function Me(){
+		// 继承Person的属性
+		Person.call(this);
+		Parent.call(this);
+	}
+	// 继承Person的方法
+	Me.prototype = Object.create(Person.prototype);
+	// 不能重写原型对象来实现 另一个对象的继承
+	// Me.prototype = Object.create(Parent.prototype);
+	// Object.assign(targetObj,copyObj)
+	// 混入技术  Mixin
+	Object.assign(Me.prototype,Parent.prototype);     
+	// 指定构造函数
+	Me.prototype.constructor = Me;
+	var me = new Me();
+
+
+ //Object.assign() 静态方法将一个或者多个源对象中所有可枚举的自有属性复制到目标对象，并返回修改后的目标对象。	 Object.assign(target, ...sources)
+	</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态操作样式</title>
+	<style type="text/css">
+		.highLight{
+			background-color: black;
+			color: white;
+			width: 250px;
+			height: 250px;
+			line-height: 250px;
+			text-align: center;
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+	<p id='box'>MJJ</p>
+	<script type="text/javascript">
+		// nodeObj.style
+		var para = document.getElementById('box');
+		/*
+		1、直接操作样式属性
+		console.log(para.style);
+		para.style.color = 'white';
+		para.style.backgroundColor = 'black';
+		para.style.width = '250px';
+		para.style.height = '250px';
+		para.style.textAlign = 'center';
+		para.style.lineHeight  = '250px';
+		para.style.fontSize  = '30px';
+		*/
+
+		// 2、通过控制属性的类名来控制样式
+		para.setAttribute('class', 'highLight');
+
+
+
+
+
+		
+	</script>
+</body>
+</html>

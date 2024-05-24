@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>04 基本的缓动运动效果</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			#box {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: relative;
+				left: -200px;
+			}
+
+			#box span {
+				position: absolute;
+				width: 40px;
+				height: 60px;
+				color: #fff;
+				background-color: #000000;
+				right: -40px;
+				top: 50%;
+				margin-top: -30px;
+				line-height: 60px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<span>拉开</span>
+		</div>
+
+		<script type="text/javascript">
+			// 0  ~ 200
+			// 缓动动画公式:  加速度 = (结束值 - 起始值) / 缓动系数  加速度由慢到慢
+			window.onload = function() {
+				var box = document.getElementById('box');
+				var timer = null,
+					end = 0,
+					end2 = -200;
+				box.onmouseover = function() {
+					clearInterval(timer);
+					timer = setInterval(function() {
+						
+						speed = (end - box.offsetLeft) / 20; //0.45  == 1 数学Math.ceil()
+						console.log(box.offsetLeft,speed)
+						// 处理边界问题
+						if (box.offsetLeft === end) {
+							clearInterval(timer);
+							return;
+						}
+						box.style.left = box.offsetLeft + speed + 'px';
+					}, 30);
+				}
+				box.onmouseout = function() {
+					clearInterval(timer);
+					timer = setInterval(function() {
+						speed = Math.floor((end2 - box.offsetLeft) / 20); //0.45  == 1 数学Math.ceil()
+						// 处理边界问题
+						if (box.offsetLeft === end2) {
+							clearInterval(timer);
+							return;
+						}
+						console.log(box.offsetLeft, speed);
+						box.style.left = box.offsetLeft + speed + 'px';
+					}, 30);
+				}
+			}
+		</script>
+	</body>
+</html>

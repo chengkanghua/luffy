@@ -6,6 +6,7 @@ from django.shortcuts import render
 from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
 
+from order.models import Order
 from .models import User
 from .serializers import UserModelSerializer
 class UserAPIView(CreateAPIView):
@@ -88,10 +89,18 @@ class SMSAPIView(APIView):
 from rest_framework.generics import CreateAPIView
 from .serializers import UserModelSerializer
 class UserAPIView(CreateAPIView):
+    """注册新用户接口"""
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
 
-
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
+from .serializers import UserOrderModelSerializer
+class UserOrderAPIView(ListAPIView):
+    permission_classes = [IsAuthenticated,]
+    serializer_class = UserOrderModelSerializer
+    def get_queryset(self):
+        return Order.objects.filter(user_id=self.request.user.id)
 
 
 

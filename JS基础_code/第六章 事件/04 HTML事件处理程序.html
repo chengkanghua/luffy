@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>04 html事件处理程序</title>
+	</head>
+	<body>
+		<div id="box" style="width: 200px;height: 100px;background-color: pink;" onclick="test();"></div>
+		<div id="box2" style="width: 200px;height: 200px;background-color: red;" onclick="this.innerHTML += event.type"></div>
+		<button id="box3" value='mjj' style="width: 200px;height: 200px;background-color: green;" onclick="this.innerHTML += value;"></button>
+
+		<script type="text/javascript">
+			// 事件处理程序
+			// 1.HTML事件处理程序
+				// 缺点: html+js无分离,后期不易维护
+			// 2.DOM0级事件处理程序
+			// 3.DOM2级事件处理程序
+			// 4.IE事件处理程序
+			// console.log(this);
+			function test(){
+				// console.log(this);
+				document.getElementById('box').innerHTML += '1';
+			}
+
+		</script>
+	</body>
+</html>

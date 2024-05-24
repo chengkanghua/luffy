@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>07 闭包的10种表示形式</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 1.返回值 最常见的一种形式
+			/* var fn = function(){
+				var name = 'mjj';
+				return function(){
+					return name;
+				}
+				
+			}
+			var fnc = fn();
+			console.log(fnc()); */
+			
+			// 2.函数赋值 一种变形的形式是将内部函数赋值给一个外部的变量
+			/* var fn2;
+			var fn = function(){
+				var name = 'mjj';
+				var a = function (){
+					return name;
+				}
+				fn2 = a;
+			}
+			fn();
+			console.log(fn2()); */
+
+			// 3.函数参数
+			/* function fn2(f) {
+				console.log(f());
+			}
+
+			function fn() {
+				var name = 'mjj';
+				var a = function() {
+					return name;
+				}
+				fn2(a);
+			}
+			fn();
+			
+			
+			// 4.IIFE
+			function fn3(f) {
+				console.log(f());
+			}
+
+			(function() {
+				var name = 'alex';
+				var a = function() {
+					return name;
+				}
+				fn3(a);
+			})(); */
+
+			// 5.循环赋值
+			/* function foo() {
+				var arr = [];
+				for (var i = 0; i < 10; i++) {
+					// (function(i){
+					// 	arr[i] = function(){
+					// 		return i;
+					// 	}
+					// })(i);
+					arr[i] = (function(n) {
+						return function() {
+							return n;
+						}
+					})(i);
+				}
+				return arr;
+			}
+			var bar = foo();
+			console.log(bar[3]()); */
+
+			// 6.getter和setter函数来将要操作得变量保存在函数内部,防止暴露在外部
+			/* var getValue, setValue;
+			(function() {
+				var num = 0;
+				getValue = function() {
+					return num;
+				}
+				setValue = function(v) {
+					if (typeof v === 'number') {
+						num = v;
+					}
+				}
+			})();
+			console.log(getValue());  // 0
+			setValue(10);
+			console.log(getValue()); // 10 */
+			
+			// 7.迭代器 
+			// 计数器
+			/* var add = function() {
+				var num = 0;
+				return function() {
+					return ++num;
+				}
+			}();
+			console.log(add()); // 1
+			console.log(add()); // 2 */
+
+			// ['alex','mjj','阿黄']
+			/* function setUp(arr) {
+				var i = 0;
+				return function() {
+					return arr[i++];
+				}
+			}
+			var next = setUp(['alex', 'mjj', '阿黄']);
+			console.log(next()); //alex
+			console.log(next()); //mjj
+			console.log(next()); //阿黄  */
+
+			// 8.区分首次  
+			//  list.indexOf(id) 查找id在数组的位置
+			/* var firstLoad = (function() {
+				var list = [];
+				return function(id) {
+					if (list.indexOf(id) >= 0) {
+						//list已经有id
+						return false;
+					} else {
+						// 首次调用
+						list.push(id);
+						return true
+					}
+				}
+			})();
+			console.log(firstLoad(10));   //true
+			console.log(firstLoad(10));   //false
+			console.log(firstLoad(30));   //true
+			console.log(firstLoad(40));   //true
+			console.log(firstLoad(40));   //false */
+
+			// 9.缓存机制
+			// 9.1 未加入缓存
+			// function mult(){
+			// 	// arguments
+			// 	var sum = 0;
+			// 	for(var i = 0; i < arguments.length; i++){
+			// 		sum = sum + arguments[i];
+			// 	}
+			// 	return sum;
+			// }
+			
+			// console.log(mult(1,2,3,1,1,2,3));  //求和
+			// console.log(mult(1,2,3,1,1,2,3));  //求和 
+			// console.log(mult(1,2,3,1,1,2,3,4)); //求和
+			
+			// 9.2 有缓存机制
+			/*
+			 // 模拟一个对象的key 看该对象中是否有相同的key，如果有则直接获取value返回
+			{
+				key:value
+				1,2,3,1,1,2,3: 18,
+				1,2,3,1,1,2,3,4: 22
+			} 
+			 
+			 
+			 */
+			/* var mult = function(){
+				// 缓存对象
+				var cache = {};
+				var calculate = function (){
+					var sum = 0;
+					for(var i = 0; i < arguments.length; i++){
+						sum = sum + i;
+					}
+					return sum;
+				}
+				return function (){
+					// 对cache对象进行操作
+					// 1,2,3,1,1,2,3
+					var args = Array.prototype.join.call(arguments,',');
+					console.log(args);  //1,2,3,1,1,2,3
+					if(args in cache){
+						return cache[args];
+					}
+					console.log(cache); //{} 空对象
+					return cache[args] = calculate.apply(null,arguments);
+				}
+				
+				
+			}();
+			console.log(mult(1,2,3,1,1,2,3));  //最后输出21  0+1+2+3+4+5+6  
+			// console.log(mult(1,2,3,1,1,2,3));
+			// console.log(mult(1,2,3,1,1,2,3,10,20));
+			// console.log(mult(1,2,3,1,1,2,3,10,20,1));
+			 */
+			// 10.img图片对象上报
+				
+				// new Image() 进行数据上报
+				// 低版本浏览器在进行数据上报会丢失30%左右的数据
+				// 
+				// var report = function (src){
+				// 	var img = new Image();
+				// 	img.src = src;
+				// }
+				// report('http://xxx.com/getUserInfo');
+				
+				// 使用闭包来做图片上传
+				var report = function (src){
+					var imgs = [];
+					return function (src){
+						var img = new Image();
+						imgs.push(img);
+						img.src = src;
+					}
+				}();
+				report('http://xxx.com/getUserInfo');
+				
+				
+		</script>
+	</body>
+</html>

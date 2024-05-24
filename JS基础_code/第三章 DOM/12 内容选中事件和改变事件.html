@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内容选中事件和内容改变事件</title>
+</head>
+<body>
+	<!-- onselect onchange -->
+	<textarea cols="30" rows="10">请写入个人简介，字数不少于200字</textarea>
+	<input type="text" name="" value="mjj">
+	<script type="text/javascript">
+		var textArea = document.getElementsByTagName('textarea')[0];
+		var inputObj = document.getElementsByTagName('input')[0];
+
+		textArea.onselect = function(){
+			console.log('内容被选中');
+		}
+		inputObj.onchange = function(){
+			console.log('内容被改变了');
+		}
+		/*
+		inputObj.oninput = function(){
+			console.log('内容被实时改变了');
+			console.log(this.value);
+		}
+		*/
+	</script>
+</body>
+</html>

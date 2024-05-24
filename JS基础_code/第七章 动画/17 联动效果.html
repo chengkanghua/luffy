@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>17 联动效果</title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#ad{
+				position: fixed;
+				right: 0;
+				bottom: 0;
+			}
+			#close{
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 25px;
+				height: 25px;
+				z-index: 5;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="ad">
+			<img src="images/ad.png" alt="" width="300">
+			<span id="close">
+				
+			</span>
+		</div>
+		<script src="js/myAnimation2.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 1.联动效果
+			// 2.侧边栏横幅
+			// 3.滚动监听
+			// 4.轮播图
+			// (1)获取标签
+			var ad = document.getElementById('ad');
+			var close = document.getElementById('close');
+			close.onclick = function (){
+				startAnimation(ad,{"height": 260},function(){
+					startAnimation(ad,{"width": 0},function(){
+						ad.style.display = 'none';
+					})
+				})
+			}
+			
+		</script>
+	</body>
+</html>

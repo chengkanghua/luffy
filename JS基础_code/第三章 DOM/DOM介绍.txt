@@ -1,0 +1,28 @@
+DOM  
+Document  Object Model 文档对象模型
+var person = {
+	name:'mjj',
+	fav:function(){
+
+	}
+}
+js中对象分类三种：
+1.用户定义对象 
+2.内建对象 Array Date Math
+3.宿主对象
+
+
+Model  Map(地图)
+
+
+DOM 看作一颗“树”
+
+DOM把文档看作一颗“家谱树”
+
+parent child  sibling
+
+	爷爷 
+
+ 爸爸             叔叔
+你   妹妹       表兄弟
+
